@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="edte">
+  
+  
+  
+  <link rel="prev" href="https://edte.github.io/2020/2020-06-11-%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" />
+  <link rel="next" href="https://edte.github.io/2020/2020-06-19-%E5%9B%BE%E8%A7%A3%E9%93%BE%E8%A1%A8/" />
+  <link rel="canonical" href="https://edte.github.io/2020/2020-06-12-markdown-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           markdown 学习笔记 | a-simple-bolg
+       
+  </title>
+  <meta name="title" content="markdown 学习笔记 | a-simple-bolg">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https://edte.github.io/"
+    },
+    "articleSection" : "posts",
+    "name" : "markdown 学习笔记",
+    "headline" : "markdown 学习笔记",
+    "description" : "引言 Markdown 是一种轻量级标记语言，创始人为约翰・格鲁伯（英语： John Gruber）。它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHT",
+    "inLanguage" : "en-us",
+    "author" : "edte",
+    "creator" : "edte",
+    "publisher": "edte",
+    "accountablePerson" : "edte",
+    "copyrightHolder" : "edte",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-12 00:00:00 &#43;0000 UTC",
+    "dateModified" : "2020-06-12 00:00:00 &#43;0000 UTC",
+    "url" : "https://edte.github.io/2020/2020-06-12-markdown-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+    "wordCount" : "3052",
+    "keywords" : [ "markdown", "a-simple-bolg"]
+}
+</script>
+
+    <link href="//use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://edte.github.io/">a-simple-bolg</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://edte.github.io/">a-simple-bolg</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">markdown 学习笔记</h1>
+        <div class="post-meta">
+           
+          <span class="post-time">
+         <i class="far fa-calendar-alt"></i>  <time datetime=2020-06-12 itemprop="datePublished">2020-06-12</time>
+           </span>
+         <i class="far fa-file-word"></i> <span class="post-word-count"> 3052 字</span>
+         <i class="far fa-clock"></i> <span class="more-meta"> 7 分钟</span>
+        </div>
+    </header>
+        
+          <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title"></h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#引言">引言</a></li>
+<li><a href="#标题">标题</a>
+<ul>
+<li><a href="#使用">使用 <code>#</code></a></li>
+<li><a href="#使用-和">使用 <code>=</code> 和 <code>-</code></a></li>
+</ul></li>
+<li><a href="#段落">段落</a></li>
+<li><a href="#字体">字体</a>
+<ul>
+<li><a href="#斜体">斜体</a></li>
+<li><a href="#粗体">粗体</a></li>
+<li><a href="#粗斜体">粗斜体</a></li>
+</ul></li>
+<li><a href="#引用">引用</a>
+<ul>
+<li><a href="#普通">普通</a></li>
+<li><a href="#嵌套">嵌套</a></li>
+<li><a href="#使用其他语法">使用其他语法</a></li>
+</ul></li>
+<li><a href="#列表">列表</a>
+<ul>
+<li><a href="#无序列表">无序列表</a></li>
+<li><a href="#有序列表">有序列表</a></li>
+<li><a href="#任务列表">任务列表</a></li>
+<li><a href="#列表嵌套">列表嵌套</a></li>
+</ul></li>
+<li><a href="#代码">代码</a>
+<ul>
+<li><a href="#行代码">行代码</a></li>
+<li><a href="#块代码">块代码</a></li>
+</ul></li>
+<li><a href="#图片">图片</a>
+<ul>
+<li><a href="#普通-1">普通</a></li>
+<li><a href="#引用-1">引用</a></li>
+</ul></li>
+<li><a href="#超链接">超链接</a>
+<ul>
+<li><a href="#直接链接">直接链接</a></li>
+<li><a href="#文字链接">文字链接</a></li>
+<li><a href="#图片链接">图片链接</a></li>
+</ul></li>
+<li><a href="#表格">表格</a></li>
+<li><a href="#水平分割线">水平分割线</a></li>
+<li><a href="#目录">目录</a></li>
+<li><a href="#删除线">删除线</a></li>
+<li><a href="#总结">总结</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+<script type="text/javascript">
+  window.onload = function () {
+    var fix = $('.post-toc');
+    var end = $('.post-comment');
+    var fixTop = fix.offset().top, fixHeight = fix.height();
+    var endTop, miss;
+    var offsetTop = fix[0].offsetTop;
+    $(window).scroll(function () {
+      var docTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+      if (end.length > 0) {
+        endTop = end.offset().top;
+        miss = endTop - docTop - fixHeight;
+      }
+      if (fixTop < docTop) {
+        fix.css({ 'position': 'fixed' });
+        if ((end.length > 0) && (endTop < (docTop + fixHeight))) {
+          fix.css({ top: miss });
+        } else {
+          fix.css({ top: 0 });
+        }
+      } else {
+        fix.css({ 'position': 'absolute' });
+        fix.css({ top: offsetTop });
+      }
+    })
+  }
+</script> 
+
+        
+
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="引言">引言</h2>
+
+<blockquote>
+<p><strong>Markdown</strong> 是一种<a href="https://zh.wikipedia.org/wiki/轻量级标记语言" rel="nofollow noreferrer" target="_blank">轻量级标记语言</a>，创始人为<a href="https://zh.wikipedia.org/wiki/約翰·格魯伯" rel="nofollow noreferrer" target="_blank">约翰・格鲁伯</a>（英语： John Gruber）。它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 <a href="https://zh.wikipedia.org/wiki/XHTML" rel="nofollow noreferrer" target="_blank">XHTML</a>（或者 <a href="https://zh.wikipedia.org/wiki/HTML" rel="nofollow noreferrer" target="_blank">HTML</a>）文档。</p>
+</blockquote>
+
+<h2 id="标题">标题</h2>
+
+<h3 id="使用">使用 <code>#</code></h3>
+
+<p>使用 <code>#</code> 符号可以设置标题，markdown 一共支持六种标题，对应着 html 中的 h1~h6。</p>
+
+<p>建议在 <code>#</code> 后加上一个空格，这是标准的格式，同时在实际使用中，一般都使用 h2~h4, h1 太大，而 h5 后面的则设置标题太多，一般建议使用无序列表代替。</p>
+
+<pre><code># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612222139424-1387886975.png" alt="标题" class="lazyload"><figcaption class="image-caption">标题</figcaption></figure></p>
+
+<h3 id="使用-和">使用 <code>=</code> 和 <code>-</code></h3>
+
+<p>markdown 还支持 多个 <code>=</code> 或 <code>-</code> 设置一级标题和二级标题，不够有些解析器并不支持这个语法，所以一般都是使用的 <code>#</code> 语法。一般要使用这个语法的话，虽然对 <code>=</code> 和 <code>-</code> 的长度没有特殊要求，但是还是建议和标题设置得一样长，这样舒服些。</p>
+
+<pre><code>一级标题
+======
+
+二级标题
+------
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612222849193-2001459215.png" alt="标题" class="lazyload"><figcaption class="image-caption">标题</figcaption></figure></p>
+
+<h2 id="段落">段落</h2>
+
+<p>markdown 的段落没有什么特殊的语法，直接写就是，要分段时直接用空白行分割开即可。常见的就是直接按两到三次回车，即在段落间有两到三个空白行分割。</p>
+
+<pre><code>这是一个段落。
+
+这又是一个段落。
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612224550457-2104814836.png" alt="段落" class="lazyload"><figcaption class="image-caption">段落</figcaption></figure></p>
+
+<h2 id="字体">字体</h2>
+
+<p>markdown 使用 <code>*</code> 或 <code>_</code> 标记字体，两者效果相同。</p>
+
+<h3 id="斜体">斜体</h3>
+
+<p>使用两个 <code>*</code> 或 <code>_</code> 把字体围起来，表示斜体, 注意不要在中间加空格，下同。</p>
+
+<pre><code>*我是斜体*
+
+_我是斜体_
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612230146952-537470422.png" alt="斜体" class="lazyload"><figcaption class="image-caption">斜体</figcaption></figure></p>
+
+<h3 id="粗体">粗体</h3>
+
+<p>使用四个 <code>*</code> 或 <code>_</code> 把字体围起来，表示粗体。</p>
+
+<pre><code>**我是粗体**
+
+__我是粗体__
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612230317896-1846971416.png" alt="粗体" class="lazyload"><figcaption class="image-caption">粗体</figcaption></figure></p>
+
+<h3 id="粗斜体">粗斜体</h3>
+
+<p>使用六个 <code>*</code> 或 <code>_</code> 把字体围起来，表示粗斜体。主要是六个，不能多了。</p>
+
+<pre><code>***我是粗斜体***
+
+___我是粗斜体___
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612230549025-2013575072.png" alt="粗斜体" class="lazyload"><figcaption class="image-caption">粗斜体</figcaption></figure></p>
+
+<h2 id="引用">引用</h2>
+
+<p>如果要在 markdown 中引入别人的文本，可以使用 <code>&gt;</code> 语法，在 <code>&gt;</code> 后加一个空格，再加要引入的文本，如经常引用的 wiki 的介绍。</p>
+
+<h3 id="普通">普通</h3>
+
+<p>如果只引入一段文本，可以直接加一个 <code>&gt;</code> ，然后后面直接加文本。</p>
+
+<pre><code>&gt; 电子邮件（英语：electronic mail），简称电邮（email、e-mail），是指一种由一寄件人将数位信息传送给一个人或多个人的信息交换方式，一般会通过网际网路或其他电脑网路进行书写、发送和接收信件，目的是达成发信人和收信人之间的信息交互。
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612231950270-1802538318.png" alt="引用" class="lazyload"><figcaption class="image-caption">引用</figcaption></figure></p>
+
+<p>这种情况要结束引用的话，需要空一行。</p>
+
+<p>如果要一句一句的引入，也可以每行都加一个 <code>&gt;</code></p>
+
+<pre><code>&gt; 电子邮件（英语：electronic mail），简称电邮（email、e-mail）
+&gt; 是指一种由一寄件人将数位信息传送给一个人或多个人的信息交换方式
+&gt; 一般会通过网际网路或其他电脑网路进行书写、发送和接收信件
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612232346199-331560309.png" alt="引用" class="lazyload"><figcaption class="image-caption">引用</figcaption></figure></p>
+
+<p>而这种情况要结束引用，也需要空一行，如果上一行行首有 <code>&gt;</code> 的话，下一行也默认跟着引用的。</p>
+
+<h3 id="嵌套">嵌套</h3>
+
+<p>要在引用中继续引用其他人的语句，也可以嵌套使用，语法都查不多</p>
+
+<pre><code>&gt; 最外层
+&gt; &gt; 第一层嵌套
+&gt; &gt; &gt; 第二层嵌套
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612232639526-899320660.png" alt="引用" class="lazyload"><figcaption class="image-caption">引用</figcaption></figure></p>
+
+<h3 id="使用其他语法">使用其他语法</h3>
+
+<p>在引用块中也支持其他语法，如标题，字体，列表，表格等等</p>
+
+<pre><code>&gt; ## This is a header.
+&gt;
+&gt; 1.   This is the first list item.
+&gt; 2.   This is the second list item.
+&gt;
+&gt; Here's some example code:
+&gt;
+&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;);
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200612233219578-77306837.png" alt="sdf" class="lazyload"><figcaption class="image-caption">sdf</figcaption></figure></p>
+
+<h2 id="列表">列表</h2>
+
+<p>markdown 支持无序列表和有序列表，如果标题级数太多，还可以使用列表来当标题使用。</p>
+
+<h3 id="无序列表">无序列表</h3>
+
+<p>markdown 支持 <code>*</code> 和 <code>-</code> 和 <code>+</code> 来标记无序列表，在文本前加一个空格是标准格式。</p>
+
+<pre><code>* 第一项
+* 第二项
+* 第三项
+
++ 第一项
++ 第二项
++ 第三项
+
+
+- 第一项
+- 第二项
+- 第三项
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://www.runoob.com/wp-content/uploads/2019/03/89446A8E-6D83-4666-AACC-980145D5F070.jpg" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h3 id="有序列表">有序列表</h3>
+
+<p>markdown 使用 数字加 <code>.</code> 标记有序列表。注意同样要加一个空格。</p>
+
+<pre><code>1. 我是第一
+2. 我是第二
+3. 我是第三
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613133224992-1490144483.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>有序列表并不是必须从 1. 开始，只要符合这个语法都能够渲染, 不过实际上这样反而达不到有序的目的了，还是建议从 1 开始。</p>
+
+<pre><code>4. 我是第四
+5. 我是第五
+6. 我是第六
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613133414911-457545360.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h3 id="任务列表">任务列表</h3>
+
+<p>任务列表不是官方语法，但是在许多地方都支持，如常用的 github</p>
+
+<p>语法 <code>- [] list_name</code> ，<code>-</code> 和 <code>[]</code> 后都要加空格, <code>[]</code> 里加一个空格表示没有完成，在里打个 <code>x</code>, 即 <code>[x]</code> 表示已经完成</p>
+
+<pre><code>- [x] 洗碗
+- [ ] 清洗油烟机
+- [ ] 拖地
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613170259049-529186485.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h3 id="列表嵌套">列表嵌套</h3>
+
+<p>有是否我们需要在列表中嵌套使用，那么直接使用列表语法即可，只是需要在嵌套的列表前加四个空格。</p>
+
+<pre><code>1. 第一
+    * hello
+    * world
+2. 第二
+    * hah
+    * lala
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613133748693-1945157290.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>类似的，要在列表中使用 引用 <code>&gt;</code> 的话，也需要加四个空格</p>
+
+<pre><code>1. 第一
+    &gt; wocaosdfsdf
+2. 第二
+    &gt; sodfjowgjeowejgo
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613133952134-1854207904.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h2 id="代码">代码</h2>
+
+<p>markdown 使用  <strong><em>`</em></strong>  语法标记代码，不过我们也经常用来标记文本。</p>
+
+<h3 id="行代码">行代码</h3>
+
+<p>如果代码比较短，或只有一句，使用两个  <em>`</em> 标记代码</p>
+
+<pre><code>`int a;`
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613134752963-562517882.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>我们发现这样标记代码语句很方便，我们有时候要强调一些文字词语或语句，也可以使用这个语法。</p>
+
+<pre><code>`这是一个强调语句`
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613134940356-753742836.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h3 id="块代码">块代码</h3>
+
+<p>我们要引入代码块的话，可以使用六个 <em>`</em> 把代码快标记起来，在第一行后面可以加上是什么语言，不加也可以使用。</p>
+
+<pre><code>​```
+int main(void) {
+	printf(&quot;Hello world!&quot;);
+	
+	return 0;
+}
+​```
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613135211676-727242141.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>加上语言</p>
+
+<pre><code>​```c
+int main(void) {
+	printf(&quot;Hello world!&quot;);
+	
+	return 0;
+}
+​```
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613135257924-151021262.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>使用代码块语法可以很方便的把使用一些代码，因为是原样引入的，所以我们有时也经常使用这个语法来引入一些文字，如要避免 <code>#</code> 被解析为标题，就可以使用这个语法，这篇博客也是这么写的。</p>
+
+<pre><code>​```
+# 这是标题语法
+​```
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613135701179-544335821.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h2 id="图片">图片</h2>
+
+<p>markdown 支持导入图片，不够并不支持更改图片的大小。</p>
+
+<h3 id="普通-1">普通</h3>
+
+<p>可以直接导入图片，使用  <code>![]()</code> 语法， <code>[]</code> 中放图片的 alt 属性，也就是移动鼠标到图片上会出现的文字，<code>()</code> 类放图片的链接，可以是外链，也可以是本地的绝对地址或相对地址。同时 <code>()</code> 里在链接后还可以使用 <code>&quot;&quot;</code> 或 <code>''</code> 给图片加上 title 属性。</p>
+
+<p>使用外链，没加 alt 属性</p>
+
+<pre><code>![](https://user-gold-cdn.xitu.io/2018/4/18/162d75d959444389?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613162018418-91728471.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>加 alt 属性</p>
+
+<pre><code>![这是一张美景](https://user-gold-cdn.xitu.io/2018/4/18/162d75d959444389?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+</code></pre>
+
+<p>加 title</p>
+
+<pre><code>![Alt text](/path/to/img.jpg &quot;Optional title&quot;)
+</code></pre>
+
+<p>本地图片</p>
+
+<pre><code>![](/home/edte/pictures/631739.jpg)
+</code></pre>
+
+<h3 id="引用-1">引用</h3>
+
+<p>同时如果我们要在多个地方导入同一张图片的话，可以把图片链接单独拿出来，然后给它加一个 id，要使用这张图片直接使用这个 id。引用图片时的语法 <code>![][]</code>, 第一个 <code>[]</code> 里加 alt 属性，第二个加图片 id，而给图片加 id 的语法是 <code>[]: url title</code> ，主要 <code>:</code> 后要加空格，后面的内容和直接使用图片时 <code>()</code> 的内容一样。</p>
+
+<pre><code>![][id]
+
+[id]: https://avatars2.githubusercontent.com/u/3265208?v=3&amp;s=100
+</code></pre>
+
+<p>和</p>
+
+<pre><code>![](https://avatars2.githubusercontent.com/u/3265208?v=3&amp;s=100)
+</code></pre>
+
+<p>效果一样</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613163039691-882959907.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h2 id="超链接">超链接</h2>
+
+<p>markdown 支持超链接，可以直接放 URL，也可以文字链接，图片链接。</p>
+
+<h3 id="直接链接">直接链接</h3>
+
+<p>markdown 支持直接放链接，使用 <code>&lt;&gt;</code> 把 URL 围起来即可, 一般这么直接放邮箱地址或一些比较短的地址。</p>
+
+<pre><code>&lt;http://www.baidu.com&gt;
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613160729650-1797553202.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>邮箱</p>
+
+<pre><code>&lt;example@email.com&gt;
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613161044489-662208021.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h3 id="文字链接">文字链接</h3>
+
+<p>我们可以添加文字链接，也就是点击文字跳转到目标地址。语法 <code>[]()</code>,  <code>[]</code> 内放文字，<code>()</code> 里放目标链接，如果不放的话，根据具体的渲染不同，有的会默认刷新当前链接。</p>
+
+<pre><code>这是 [百度](https://www.baidu.com) 的链接
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613163842235-1519003886.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>同样的，类似引入图片，如果我们要跳转的文字链接相同的太多了，也可以把它弄成一个 id 去引用，语法 <code>[][]</code>,  第一个 <code>[]</code> 里放文字，第二个放 id，然后再用 <code>[]: url</code> 定义url 的 id。</p>
+
+<pre><code>[百度][id]
+
+[id]: https://www.baidu.com
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613164233274-325213845.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h3 id="图片链接">图片链接</h3>
+
+<p>markdown 也支持图片链接，也就是点击图片跳转链接，这个其实就是文字链接和引入图片的结合。文字链接的语法是 <code>[]()</code>, 所以只要在第一个 <code>[]</code> 里把文字变为图片就是图片链接，而图片是 <code>![]()</code>, 所以图片链接就是</p>
+
+<p><code>[![图片 alt](图片 url)](跳转的 url)</code></p>
+
+<pre><code>[![](https://cdn.sspai.com/attachment/origin/2014/04/15/69530.png?imageMogr2/auto-orient/quality/95/thumbnail/!1420x708r/gravity/Center/crop/1420x708/interlace/1)](https://zh.wikipedia.org/wiki/Markdown)
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613164756533-545661439.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h2 id="表格">表格</h2>
+
+<p>表格的语法比较复杂，使用 <code>|</code> 分割单元格，用 <code>-</code> 分割表头和其他行，用 <code>:</code> 表示对齐。</p>
+
+<p>这是没有对齐的，默认表头居中，表格左对齐</p>
+
+<pre><code>|    name    | age |
+| ---------- | --- |
+| LearnShare |  12 |
+| Mike       |  32 |
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613170757327-1505343819.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><code>:---</code> 代表左对齐，<code>:--:</code> 代表居中对齐，<code>---:</code> 代表右对齐</p>
+
+<pre><code>| left | center | right |
+| :--- | :----: | ----: |
+| aaaa | bbbbbb | ccccc |
+| a    | b      | c     |
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613171012952-890986657.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>表格中也支持其他 markdown 语法，如文字链接，字体等</p>
+
+<pre><code>|     name     | age |             blog                |
+| ------------ | --- | ------------------------------- |
+| _LearnShare_ |  12 | [LearnShare](http://xianbai.me) |
+| __Mike__     |  32 | [Mike](http://mike.me)          |
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613171309403-546628364.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h2 id="水平分割线">水平分割线</h2>
+
+<p>markdown 也支持分割线，在一行连续使用三个 <code>*</code> 或 <code>-</code> 或 <code>_</code> 即可，之间可以加空格</p>
+
+<pre><code>*** 
+---
+___
+* * *
+</code></pre>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<hr />
+
+<h2 id="目录">目录</h2>
+
+<p>有些解析器支持添加目录（Table of Contents），如 github，直接在前面加上 <code>[toc]</code> 即可。</p>
+
+<pre><code>[toc]
+
+## 一级标题
+
+## 二级标题
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613172924841-1888403180.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h2 id="删除线">删除线</h2>
+
+<p>有些解析器支持删除线，自己在目标文字间加上两个 <code>~</code>即可</p>
+
+<pre><code>~~我被删除啦~~
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202006/1823594-20200613173328031-272060208.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h2 id="总结">总结</h2>
+
+<p>基础的语法已经足够使用，而那些专业点的图，如流程图之类的还是使用专业的工具来画比较好，使用 markdown 的目的是让我们专注于内容本身，而复杂的语法和不兼容的特性会大大降低我们效率。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://markdown-zh.readthedocs.io/en/latest/" rel="nofollow noreferrer" target="_blank">Markdown 中文文档</a></p>
+
+<p><a href="https://zh.wikipedia.org/wiki/Markdown" rel="nofollow noreferrer" target="_blank">markdown</a></p>
+
+<p><a href="http://xianbai.me/learn-md/index.html" rel="nofollow noreferrer" target="_blank">Learning-Markdown</a></p>
+
+<p><a href="https://www.runoob.com/markdown/md-tutorial.html" rel="nofollow noreferrer" target="_blank">Markdown 教程</a></p>
+
+<p><a href="https://mazhuang.org/2018/09/06/markdown-intro/#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF" rel="nofollow noreferrer" target="_blank">一份简明的 Markdown 笔记与教程</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>edte </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://edte.github.io/2020/2020-06-12-markdown-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>https://edte.github.io/2020/2020-06-12-markdown-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://edte.github.io/tags/markdown/">
+                    #markdown</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://edte.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://edte.github.io/2020/2020-06-11-%E6%B5%85%E8%B0%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="prev" rel="prev" title="浅谈数据结构与算法"><i class="iconfont icon-left"></i>&nbsp;浅谈数据结构与算法</a>
+         
+        
+        <a href="https://edte.github.io/2020/2020-06-19-%E5%9B%BE%E8%A7%A3%E9%93%BE%E8%A1%A8/" class="next" rel="next" title="图解链表">图解链表&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+ <div class="post-comment">
+       
+             
+             
+             <span id="/2020/2020-06-12-markdown-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="markdown 学习笔记">
+                 <span class="post-meta-item-text">访问量 </span>
+                 <span class="leancloud-visitors-count"></span>
+                 <p></p>
+             </span>
+             <div id="vcomments"></div>
+             <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+             <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+             <script type="text/javascript">
+                 new Valine({
+                     el: '#vcomments' ,
+                     appId: 'jYOoQf1fiqM8W9yLLQFElx0b-MdYXbMMI',
+                     appKey: 'kBEzPfUjNEJ4MSrSRitotLRX',
+                     notify:  false ,
+                     verify:  false ,
+                     avatar:'mp',
+                     placeholder: '说点什么吧...',
+                     visitor:  true 
+                 });
+             </script>
+       
+ </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://edte.github.io/">edte</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

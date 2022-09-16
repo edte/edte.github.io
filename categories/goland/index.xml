@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Goland on a-simple-bolg</title>
+    <link>https://edte.github.io/categories/goland/</link>
+    <description>Recent content in Goland on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/categories/goland/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Goland 快捷键讲解</title>
+      <link>https://edte.github.io/2020/2020-05-02-goland-%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%AE%B2%E8%A7%A3/</link>
+      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-05-02-goland-%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%AE%B2%E8%A7%A3/</guid>
+      <description>原则 快捷键不能过多 快捷键不能过多，一个 ide 就有许多快捷键，再加上浏览器，终端等等，快捷键如此之多，而且快捷键与功能之间并没有关系，也就是说，你</description>
+    </item>
+    
+  </channel>
+</rss>

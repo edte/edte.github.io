@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="edte">
+  
+  
+  
+  <link rel="prev" href="https://edte.github.io/2020/2020-06-21-i3-%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91/" />
+  <link rel="next" href="https://edte.github.io/2020/2020-07-10-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%80%BB%E6%98%AF-stack-overflow/" />
+  <link rel="canonical" href="https://edte.github.io/2020/2020-07-08-%E5%9B%BE%E8%A7%A3%E9%98%9F%E5%88%97/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           图解队列 | a-simple-bolg
+       
+  </title>
+  <meta name="title" content="图解队列 | a-simple-bolg">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https://edte.github.io/"
+    },
+    "articleSection" : "posts",
+    "name" : "图解队列",
+    "headline" : "图解队列",
+    "description" : "引言 这篇文章是根据我学习 queue 的学习笔记总结而成的。 定义 queue 是线性表(linear list)中的一种，元素间遵循一对一的原则。 除此外，queue 遵",
+    "inLanguage" : "en-us",
+    "author" : "edte",
+    "creator" : "edte",
+    "publisher": "edte",
+    "accountablePerson" : "edte",
+    "copyrightHolder" : "edte",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-07-08 00:00:00 &#43;0000 UTC",
+    "dateModified" : "2020-07-08 00:00:00 &#43;0000 UTC",
+    "url" : "https://edte.github.io/2020/2020-07-08-%E5%9B%BE%E8%A7%A3%E9%98%9F%E5%88%97/",
+    "wordCount" : "5550",
+    "keywords" : [ "数据结构", "a-simple-bolg"]
+}
+</script>
+
+    <link href="//use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://edte.github.io/">a-simple-bolg</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://edte.github.io/">a-simple-bolg</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">图解队列</h1>
+        <div class="post-meta">
+           <i class="far fa-folder-open"></i>
+                <span class="post-category">
+                        <a href="https://edte.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"> 数据结构 </a>
+                        
+                </span>
+          <span class="post-time">
+         <i class="far fa-calendar-alt"></i>  <time datetime=2020-07-08 itemprop="datePublished">2020-07-08</time>
+           </span>
+         <i class="far fa-file-word"></i> <span class="post-word-count"> 5550 字</span>
+         <i class="far fa-clock"></i> <span class="more-meta"> 12 分钟</span>
+        </div>
+    </header>
+        
+          <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title"></h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#引言">引言</a></li>
+<li><a href="#定义">定义</a></li>
+<li><a href="#分类">分类</a></li>
+<li><a href="#实现">实现</a>
+<ul>
+<li><a href="#顺序存储">顺序存储</a></li>
+<li><a href="#链式存储">链式存储</a></li>
+<li><a href="#双端队列">双端队列</a></li>
+<li><a href="#优先队列">优先队列</a></li>
+</ul></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+<script type="text/javascript">
+  window.onload = function () {
+    var fix = $('.post-toc');
+    var end = $('.post-comment');
+    var fixTop = fix.offset().top, fixHeight = fix.height();
+    var endTop, miss;
+    var offsetTop = fix[0].offsetTop;
+    $(window).scroll(function () {
+      var docTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+      if (end.length > 0) {
+        endTop = end.offset().top;
+        miss = endTop - docTop - fixHeight;
+      }
+      if (fixTop < docTop) {
+        fix.css({ 'position': 'fixed' });
+        if ((end.length > 0) && (endTop < (docTop + fixHeight))) {
+          fix.css({ top: miss });
+        } else {
+          fix.css({ top: 0 });
+        }
+      } else {
+        fix.css({ 'position': 'absolute' });
+        fix.css({ top: offsetTop });
+      }
+    })
+  }
+</script> 
+
+        
+
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="引言">引言</h2>
+
+<p>这篇文章是根据我学习 queue 的学习笔记总结而成的。</p>
+
+<h2 id="定义">定义</h2>
+
+<p>queue 是线性表(linear list)中的一种，元素间遵循一对一的原则。</p>
+
+<p>除此外，queue 遵循 FIFO(first in first out) 原则，即先进的元素先出。</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708144435829-1190638552.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<h2 id="分类">分类</h2>
+
+<p>queue 入队和出队方式分为单端队列和双端队列，一般我们说队列都指的是单端队列。</p>
+
+<p>单端队列就是只能在队尾（rear) 入队，只能在队首(front)出队的队列</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708144611569-1301444973.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>双端队列则是队首和队尾都可以入队和出队的队列。(deque)(double-ended queue)</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708171600292-815729097.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>queue 按照入出队元素的选择方式分为普通队列的和优先队列。</p>
+
+<p>普通的队列就是按顺序入出队，入队到队尾，把队首出队。</p>
+
+<p>而优先队列则要看优先级，优先级是自己定的，每个元素都有其优先级，而入出队则选择最大或最小优先级的元素来操作。</p>
+
+<p>优先队列分为有序的和无序的，如果优先级是指最大值，每次出队都是取出最大值。那么就分为两类，入队时不排序，直接存在队尾，而出队时则需要搜索，取出最大值，这样入队时间复杂度为 O(1), 而出队的时间复杂度为 O(n), 类似的，如果是入队时排序，那么在入队时就要插入到对应位置，而出队时则直接出队首的位置，入队的时间复杂度为 O(n), 出队为 O(1), 这其中还设计搜索算法和排序算法。</p>
+
+<p>没有特别说明是双端队列和或优先队列时，都是默认的指单端普通队列。</p>
+
+<p>应用的比较广的单端普通队列，也是我们生活中比较常见的，如实际生活中的排队，不考虑插队这种情况的话，也是队尾入队，队首出队，你可以观察一下生活中遇到的队伍是不是这样。</p>
+
+<h2 id="实现">实现</h2>
+
+<p>queue 可以用 顺序存储 或 链式存储实现。
+无论哪种方式都需要用两个指针，front 和 rear 指向 queue 首和 queue 尾</p>
+
+<h3 id="顺序存储">顺序存储</h3>
+
+<p>首先定义 queue，需要两指针和数据域</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200707202839305-403164183.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>// 分配的内存大小
+#define SIZE 5
+
+// 定义 queue
+typedef struct {
+    int data[SIZE];  //数据
+    int front;       // 首指针
+    int rear;        //尾指针
+} Queue;
+</code></pre>
+
+<p>然后初始化，两指针同时指向 array[0] 处，因为 0 处是初始位置比较容易管理
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150521008-1021086627.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>// 初始化 queue
+Queue CreateQueue() {
+    Queue queue;
+    queue.rear = 0;
+    queue.front = 0;
+    return queue;
+}
+</code></pre>
+
+<p>现在问题来了， 0 处设置为 队首还是队尾呢？从技术上来说，肯定都是能够实现的，但是问题是，哪个更适合呢？</p>
+
+<p><strong>0 处为队首</strong></p>
+
+<p>现在我们假设 0 处是队首, 只能从队尾入队，从队首出队
+假设队伍现在是这样的</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150521008-1021086627.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><strong>入队</strong></p>
+
+<p>我们发现现在的尾指针指向的值是空的，也就是说，尾指针其实指向的是实际队尾的下一个</p>
+
+<p>那么要入队，队列又只能从队尾入队，所以直接给尾指针指向的赋值</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150441148-963502923.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后尾指针需要向后移动一次</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150417990-1323935408.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>转换为代码</p>
+
+<pre><code>// 入队
+void EnQueue(Queue *queue, int data) {
+    // 先尾指针赋值
+    queue-&gt;data[queue-&gt;rear] = data;
+    // 再尾指针移动
+    queue-&gt;rear++;
+}
+</code></pre>
+
+<p>需要注意如果 queue 已经满了，入队会 overflow，所以还需要先判断是不是满了</p>
+
+<p>问题是怎么判断是不错满了呢？</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708151310997-1151621032.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>在 array 中，满了的意思是分配的内存不能再给 queue 用了，所以就是 rear 指向分配内存的边缘了，所以只需要判断 rear 是不是等于 SIZE 即可</p>
+
+<pre><code>// 入队
+void EnQueue(Queue *queue, int data) {
+    // 判断是否 overflow
+    if (queue-&gt;rear == SIZE) {
+        return;
+    }
+
+    // 先尾指针赋值
+    queue-&gt;data[queue-&gt;rear] = data;
+    // 再尾指针移动
+    queue-&gt;rear++;
+}
+</code></pre>
+
+<p><strong>出队</strong></p>
+
+<p>现在假设 queue 是这样的</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150417990-1323935408.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>要出队的话，只需要首指针向右移动一次即可</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708151940172-1933758519.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>可能有人会问，那出队的那个内存的值怎么办呢？</p>
+
+<p>一般 queue 作为局部变量的话，用 array 来实现，都是分配在 stack 上的，调用函数时系统自动分配，函数结束自动回收。而一般分配后，也不会清空，刚分配的内存存的值也是不能确定的脏值。并且，我们操作 queue 只看的是 front 和 rear 中间的部分，所以那个值没有改变的必要。</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708152253839-684771514.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>用代码来实现</p>
+
+<pre><code>// 出队
+void DeQueue(Queue *queue) {
+    // 首指针移动
+    queue-&gt;front++;
+}
+</code></pre>
+
+<p>同样的，不要忘记判断边界条件，如果已经是空 queue 的话，再出队会 underflow，所以还需要判断是否为空。</p>
+
+<p>要判断是否为空比较容易理解，只需判断 front 是否等于 rear 即可</p>
+
+<pre><code>// 出队
+void DeQueue(Queue *queue) {
+    // 判断是否为空
+    if (queue-&gt;rear == queue-&gt;front) {
+        return;
+    }
+    // 首指针移动
+    queue-&gt;front++;
+}
+</code></pre>
+
+<p><strong>获取队伍长度</strong></p>
+
+<p>要获取队伍长度的话，只需要得到 rear 和 front 间的长度即可，也不用判断是否为空，为空是长度为 0</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708152750861-282212745.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>// 获取 queue 长度
+int Len(Queue *queue) {
+    return queue-&gt;rear - queue-&gt;front;
+}
+</code></pre>
+
+<p><strong>0 处为队尾</strong></p>
+
+<p>现在我们假设队伍是这样的</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708153243726-1777482134.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><strong>入队</strong></p>
+
+<p>入队的话，需要在 rear 处入队，而 rear 在 0 处，左边又没有地方，所以只能往右边存，现在右边又没有空，所以需要右边留一个空出来。这样的话，就需要右边每个值都向右移动一个位置</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708153615573-1235449861.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后 rear 向左移动</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708153715053-606461553.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>再赋值</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708153749303-661618685.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>我们发现如果把 0 作为队尾，入队的话，时间复杂度是 O(n), 而把 0 作为队首则都是 O(1), 同样的，按照一般的习惯，队尾一般都比队首大，可是把 0 作为队尾则反过来了，不符合我们的习惯。所以一般还是把 0 处作为队首比较好。</p>
+
+<p>当然有人可能会问，分配一块内存，然后直接在中间某处作为队首队尾如何</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708154123074-527878191.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>这样的话，无论往哪边排队，都是可以的，不过一般我们没有这样做而已。</p>
+
+<p><strong>实际操作</strong></p>
+
+<p>我们来实际看一下</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define SIZE 5
+
+typedef struct {
+    int data[SIZE];
+    int front;
+    int rear;
+} Queue;
+
+Queue CreateQueue() {
+    Queue queue;
+    queue.rear = 0;
+    queue.front = 0;
+    return queue;
+}
+
+// 入队
+void EnQueue(Queue *queue, int data) {
+    // 判断是否 overflow
+    if (queue-&gt;rear == SIZE) {
+        return;
+    }
+
+    // 先尾指针赋值
+    queue-&gt;data[queue-&gt;rear] = data;
+    // 再尾指针移动
+    queue-&gt;rear++;
+}
+
+// 出队
+void DeQueue(Queue *queue) {
+    // 判断是否为空
+    if (queue-&gt;rear == queue-&gt;front) {
+        return;
+    }
+    // 尾指针移动
+    queue-&gt;front++;
+}
+
+// 获取 queue 长度
+int Len(Queue *queue) {
+    return queue-&gt;rear - queue-&gt;front;
+}
+
+void TraverseQueue(Queue queue) {
+    while (queue.front != queue.rear) {
+        printf(&quot;%d\n&quot;, queue.data[queue.front]);
+        queue.front++;
+    }
+}
+
+int main(void) {
+    Queue queue = CreateQueue();
+    EnQueue(&amp;queue, 1);
+    EnQueue(&amp;queue, 2);
+    EnQueue(&amp;queue, 3);
+    EnQueue(&amp;queue, 4);
+    EnQueue(&amp;queue, 5);
+
+    TraverseQueue(queue);
+
+    DeQueue(&amp;queue);
+
+    TraverseQueue(queue);
+
+    return 0;
+}
+</code></pre>
+
+<p><strong>循环队列</strong></p>
+
+<p>我们现在再来看一下上面，刚开始时队列是这样的</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150521008-1021086627.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后入队一次，出队一次，变成了这样</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708152253839-684771514.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>发现没有，队列在往右移动，其实容易理解，入队和出队都是指针往右动，那么队列总体在往右移动也正常，但是左边的那些内存空间呢？</p>
+
+<p>我们会发现随着队列的移动，左边的空间被浪费了，而且越来越多。那么有什么办法重新利用起左边的那些空间吗？</p>
+
+<p>既然队列在往右移动，那么只要往右移动到边界后，又重新移动到左边就行了，这就是一个周期函数，自变量是往右移动的长度，因变量是实际队列的长度</p>
+
+<p>对于用 array 来实现的普通 queue，定义 queue 和初始化都是相同的</p>
+
+<pre><code>// 分配的内存大小
+#define SIZE 5
+
+// 定义 queue
+typedef struct {
+    int data[SIZE];  //数据
+    int front;       // 首指针
+    int rear;        //尾指针
+} Queue;
+
+// 初始化 queue
+Queue CreateQueue() {
+    Queue queue;
+    queue.rear = 0;
+    queue.front = 0;
+    return queue;
+}
+</code></pre>
+
+<p>所以问题在于，入队和出队</p>
+
+<p>用 array 来实现 queue 时，指针的移动是按下标来实现的，所以只需要指针到达 queue 右边边界后，又等于左边边界下标即可。</p>
+
+<p><strong>入队</strong></p>
+
+<p>同样的，入队时首先给 rear 指向的赋值</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150521008-1021086627.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150441148-963502923.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后 rear 移动，当不是循环时，直接向右移动即可，现在循环就不行了。需要先移动，然后对 SIZE 取余数，至于为什么，我们来分析一下</p>
+
+<p>当 rear 没有超过 SIZE 时，移动后取余，还是本身，就等于直接向右移动</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150417990-1323935408.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>当 rear 超过 SIZE 后</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708160824609-220481517.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>再取余，取整就是圈数，取余就是余下的位置</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708160947821-1436455382.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>用代码实现</p>
+
+<pre><code>// 入队
+void EnQueue(Queue *queue, int data) {
+    // 先尾指针赋值
+    queue-&gt;data[queue-&gt;rear] = data;
+    // 再尾指针移动
+    queue-&gt;rear = (queue-&gt;rear + 1) % SIZE;
+}
+</code></pre>
+
+<p>同样的，要注意是否 queue 满了，比较尾指针移动后的位置，和 front 的大小</p>
+
+<pre><code>// 入队
+void EnQueue(Queue *queue, int data) {
+    // 判断是否满 queue 
+    if (queue-&gt;front == (queue-&gt;front + 1) % SIZE) {
+        return;
+    }
+
+    // 先尾指针赋值
+    queue-&gt;data[queue-&gt;rear] = data;
+    // 再尾指针移动
+    queue-&gt;rear = (queue-&gt;rear + 1) % SIZE;
+}
+</code></pre>
+
+<p><strong>出队</strong></p>
+
+<p>假设队伍现在是这样的</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708161740553-328181925.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>同样的，出队的话，需要 front 向前移动，不过是环上的移动，需要加 1 后取余</p>
+
+<pre><code>// 出队
+void DeQueue(Queue *queue) {
+    // 尾指针移动
+    queue-&gt;front = (queue-&gt;front + 1) % SIZE;
+}
+</code></pre>
+
+<p>然后要需要是否为空，当为空时，front 等于 rear，直接判断即可，不用移动</p>
+
+<pre><code>// 出队
+void DeQueue(Queue *queue) {
+    // 判断是否为空
+    if (queue-&gt;rear == queue-&gt;front) {
+        return;
+    }
+    // 尾指针移动
+    queue-&gt;front = (queue-&gt;front + 1) % SIZE;
+}
+</code></pre>
+
+<p><strong>获取长度</strong></p>
+
+<pre><code>// 获取 queue 长度
+int Len(Queue queue) {
+    return (queue.rear - queue.front + SIZE) % SIZE;
+}
+</code></pre>
+
+<p><strong>实际操作</strong></p>
+
+<p>我们来实际看一下</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define SIZE 5
+
+typedef struct {
+    int data[SIZE];
+    int front;
+    int rear;
+} Queue;
+
+Queue CreateQueue() {
+    Queue queue;
+    queue.rear = 0;
+    queue.front = 0;
+    return queue;
+}
+
+// 入队
+void EnQueue(Queue *queue, int data) {
+    // 判断是否满 queue
+    if (queue-&gt;front == (queue-&gt;rear + 1) % SIZE) {
+        return;
+    }
+
+    // 先尾指针赋值
+    queue-&gt;data[queue-&gt;rear] = data;
+    // 再尾指针移动
+    queue-&gt;rear = (queue-&gt;rear + 1) % SIZE;
+}
+
+// 出队
+void DeQueue(Queue *queue) {
+    // 判断是否为空
+    if (queue-&gt;rear == queue-&gt;front) {
+        return;
+    }
+    // 尾指针移动
+    queue-&gt;front = (queue-&gt;front + 1) % SIZE;
+}
+
+// 获取 queue 长度
+int Len(Queue queue) {
+    return (queue.rear - queue.front + SIZE) % SIZE;
+}
+
+// 遍历 queue
+void TraverseQueue(Queue queue) {
+    while (queue.front != queue.rear) {
+        printf(&quot;%d\n&quot;, queue.data[queue.front]);
+        queue.front++;
+    }
+}
+
+int main(void) {
+    Queue queue = CreateQueue();
+    EnQueue(&amp;queue, 1);
+    EnQueue(&amp;queue, 2);
+    EnQueue(&amp;queue, 3);
+    EnQueue(&amp;queue, 4);
+    EnQueue(&amp;queue, 5);
+
+    TraverseQueue(queue);
+
+    return 0;
+}
+</code></pre>
+
+<p>我们这时会发现一个问题，明明我们分配了 5 个空间，然后存 5 个值，怎么只得到了 4 个值呢？</p>
+
+<p>我们来实际分析一下，假设已经存到第 3 个值了</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708164915438-518134593.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后入队，queue-&gt;front = 0, (queue-&gt;rear + 1) % SIZE = 4,没有满，继续</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708164736517-675345207.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708164950574-788753523.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>现在已经入了 4 个值，再继续入队，queue-&gt;front = 0, (queue-&gt;rear + 1) % SIZE = 0, 我们发现 front == (rear+1)%SIZE 了，从位置上来说 rear 和 front 的确已经相邻，判断没有出问题，但是实际上 rear 指向的那个值并没有存东西</p>
+
+<p>我们现在回想一下最初初始化 queue 的时候</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150521008-1021086627.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>我们发现 rear 指向的值也没有值，而每次入队后，rear 指向的都是 queue 实际队尾的后面那个位置</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708150417990-1323935408.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>所以循环队列总会浪费一个空间。</p>
+
+<h3 id="链式存储">链式存储</h3>
+
+<p><strong>定义</strong></p>
+
+<p>从上面的分析可以发现，顺序存储的单端普通队列有着顺序存储的缺点，即容量固定，当队列容量不定时，链式存储能发挥它的优势。</p>
+
+<p>链式存储，是由每个 node 连接而成的，所以我们先来定义 node</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708222953404-1006557160.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>每个 node 需要存数据 data，和下一个 node 的地址。</p>
+
+<pre><code>// 队伍每个节点
+typedef struct {
+    int data;
+    struct Node *next;
+} Node;
+</code></pre>
+
+<p>然后队列不同于普通的单链表，除了在元素的增删上有区别外，链式存储的队列还需要存两个地址，即 front 和 rear，而单链表只需要存首地址 head 即可。</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708223501744-1390673518.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>// queue
+typedef struct {
+    Node *front;
+    Node *rear;
+} Queue;
+</code></pre>
+
+<p>如同单链表可以增加一个首节点，链队列也可以选择增加首节点。</p>
+
+<p>有头节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708223751553-75757813.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>无头节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708223911313-402115255.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>单端队列出队都是在 rear 处，有没有头节点对于出队而言没有什么影响。</p>
+
+<p>但是对于入队来说，没有头节点需要同时修改 front 和 rear，而有头节点直接修改 front 即可，除此外，初始化 queue，遍历 queue 都有一些区别。</p>
+
+<p><strong>初始化</strong></p>
+
+<p>如果没有头节点的话，直接给两指针分配空间</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708224445372-1809678568.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后都指向 NULL 即可</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708223911313-402115255.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>// init queue
+Queue CreateQueue() {
+    // 分配给 Queue 存两个指针的内存
+    Queue *queue = (Queue *) malloc(sizeof(Queue));
+    // 两指针指向 NULL
+    queue-&gt;rear = NULL;
+    queue-&gt;front = NULL;
+
+    return *queue;
+}
+</code></pre>
+
+<p>而如果有头节点的话，则除了需要给指针分配空间，还要分配一个新节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708224812447-1188455544.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后新节点指向 NULL</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708224901961-1624216339.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>再指针指向这个节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708224933688-133770078.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>// 初始化队伍
+Queue CreateQueue() {
+    // 分配给 Queue 存两个指针的内存
+    Queue *queue = (Queue *) malloc(sizeof(Queue));
+    // 分配首节点
+    Node *new_node = (Node *) malloc(sizeof(Node));
+    // 首节点下一个指向 NULL
+    new_node-&gt;next = NULL;
+    // queue 两指针指向首节点
+    queue-&gt;front = new_node;
+    queue-&gt;rear = new_node;
+
+    return *queue;
+}
+</code></pre>
+
+<p><strong>入队</strong></p>
+
+<p>如果有头节点，需要先新建一个 node</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708225150132-855963295.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>存值</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708225219472-682960157.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>新 node 指向 NULL，因为新 node 会变成队尾，而队尾是指向 NULL 的</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708225318213-1206582764.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后尾节点指向新节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708225438233-236457312.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>再尾指针指向新节点，即新的尾节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708225527742-1785401901.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>换为代码</p>
+
+<pre><code>// 入队
+void EnQueue(Queue *queue, int data) {
+    // 建立新 node
+    Node *new_node = (Node *) malloc(sizeof(Node));
+    // 存值
+    new_node-&gt;data = data;
+    // 新 node 对成为队尾，队尾指向 NULL
+    new_node-&gt;next = NULL;
+    // 尾节点连接新 node
+    queue-&gt;rear-&gt;next = (struct Node *) new_node;
+    // 尾指针指向新 node
+    queue-&gt;rear = new_node;
+}
+</code></pre>
+
+<p>这是有首节点的入队方式，如果没有首节点的话，第一次入队有些不同</p>
+
+<p>这是初始化后的样子</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708225744480-840269648.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后判断 queue 是第一次入队后，即判断 front 和 rear 都等于 NULL 后</p>
+
+<p>新建 node</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708225914798-2026367134.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>新 node 存值</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708225946852-354864368.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>新 node 连接 NULL</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708230020809-1551393815.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后两指针都指向新 node</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708230121592-1900847672.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>这之后就和普通的入队方式没有什么区别了</p>
+
+<p>代码</p>
+
+<pre><code>// 入队
+void EnQueue(Queue *queue, int data) {
+    // 建立新 node
+    Node *new_node = (Node *) malloc(sizeof(Node));
+    // 存值
+    new_node-&gt;data = data;
+    // 新 node 对成为队尾，队尾指向 NULL
+    new_node-&gt;next = NULL;
+
+    // 如果是没有头节点，且第一次入队
+    if (queue-&gt;rear == NULL &amp;&amp; queue-&gt;front == NULL) {
+        queue-&gt;rear = new_node;
+        queue-&gt;front = new_node;
+        return;
+    }
+
+    // 尾节点连接新 node
+    queue-&gt;rear-&gt;next = (struct Node *) new_node;
+    // 尾指针指向新 node
+    queue-&gt;rear = new_node;
+}
+</code></pre>
+
+<p><strong>出队</strong></p>
+
+<p>入队时没有容量限制，但是出队要注意是否为空队，所以我们都需要先判断一下是否为空队。</p>
+
+<p>而无论是有头节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708223751553-75757813.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>还是没有头节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708223911313-402115255.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>都只需判断 front 是否等于 rear 即可。</p>
+
+<p>我们继续来先看有头节点的出队</p>
+
+<p>现在假设队伍是这样的</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708230616661-1506848369.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>出队是出队首，但是有头节点的话，应该是头节点下一个节点，即这个</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708231147381-1529266212.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>因为是链式存储，我们需要自己释放内存，所以先备份要出的那个节点</p>
+
+<p>建立一个指针，然后指向这个节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708231336905-1096854923.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后头节点指向队首节点的下一个</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708231607493-33719760.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后释放备份的节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708231653652-1247302354.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>代码</p>
+
+<pre><code>// 出队
+void DeQueue(Queue *queue) {
+    // 判断是否为空队
+    if (queue-&gt;front == queue-&gt;rear) {
+        return;
+    }
+    // 备份队首
+    Node *t = queue-&gt;front-&gt;next;
+    // 出队
+    queue-&gt;front-&gt;next = t-&gt;next;
+    // 释放队首内存
+    free(t);
+}
+</code></pre>
+
+<p>而对于没有头节点的队列来说，需要删除的则是这个</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708231952100-1958724026.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>类似的，先备份</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708232111041-1113198840.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>出队</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708232253140-580255912.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>然后释放内存，主要出队时和有头节点的区别</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708232339013-343707855.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>不过这里需要注意一下，当只有一个节点，而又出队时</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708232540472-2048663088.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708232614740-1013374856.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708232652423-1001154541.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708232729168-1862090522.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>当出队后，rear 仍然指向上一个 node 的地址，但是那个 node 已经被释放了，所以需要把它改为指向 NULL 才行</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200708232833493-196275668.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>换为代码</p>
+
+<pre><code>// 出队
+void DeQueue(Queue *queue) {
+    // 判断是否为空队
+    if (queue-&gt;front == queue-&gt;rear) {
+        return;
+    }
+    // 备份队首
+    Node *t = queue-&gt;front;
+    // 出队
+    queue-&gt;front = t-&gt;next;
+    // 释放队首内存
+    free(t);
+    // 判断是否又变为空 queue
+    if (queue-&gt;front == NULL) {
+        queue-&gt;rear = NULL;
+    }
+}
+</code></pre>
+
+<p><strong>实际操作</strong></p>
+
+<p>无头节点</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 队伍每个节点
+typedef struct {
+    int data;
+    struct Node *next;
+} Node;
+
+// queue
+typedef struct {
+    Node *front;
+    Node *rear;
+} Queue;
+
+// init queue
+Queue CreateQueue() {
+    // 分配给 Queue 存两个指针的内存
+    Queue *queue = (Queue *) malloc(sizeof(Queue));
+    // 两指针指向 NULL
+    queue-&gt;rear = NULL;
+    queue-&gt;front = NULL;
+
+    return *queue;
+}
+
+// 入队
+void EnQueue(Queue *queue, int data) {
+    // 建立新 node
+    Node *new_node = (Node *) malloc(sizeof(Node));
+    // 存值
+    new_node-&gt;data = data;
+    // 新 node 对成为队尾，队尾指向 NULL
+    new_node-&gt;next = NULL;
+
+    // 如果是没有头节点，且第一次入队
+    if (queue-&gt;rear == NULL &amp;&amp; queue-&gt;front == NULL) {
+        queue-&gt;rear = new_node;
+        queue-&gt;front = new_node;
+        return;
+    }
+
+    // 尾节点连接新 node
+    queue-&gt;rear-&gt;next = (struct Node *) new_node;
+    // 尾指针指向新 node
+    queue-&gt;rear = new_node;
+}
+
+// 出队
+void DeQueue(Queue *queue) {
+    // 判断是否为空队
+    if (queue-&gt;front == queue-&gt;rear) {
+        return;
+    }
+    // 备份队首
+    Node *t = queue-&gt;front;
+    // 出队
+    queue-&gt;front = t-&gt;next;
+    // 释放队首内存
+    free(t);
+    // 判断是否又变为空 queue
+    if (queue-&gt;front == NULL) {
+        queue-&gt;rear = NULL;
+    }
+}
+
+void TraverseQueue(Queue queue) {
+    while (queue.rear != queue.front) {
+        printf(&quot;%d\n&quot;, queue.front-&gt;data);
+        queue.front = queue.front-&gt;next;
+    }
+    printf(&quot;%d\n&quot;, queue.front-&gt;data);
+};
+
+
+int main(void) {
+    Queue queue = CreateQueue();
+    EnQueue(&amp;queue, 1);
+    EnQueue(&amp;queue, 2);
+    EnQueue(&amp;queue, 3);
+    EnQueue(&amp;queue, 4);
+    EnQueue(&amp;queue, 5);
+
+    TraverseQueue(queue);
+
+    printf(&quot;###\n&quot;);
+
+    DeQueue(&amp;queue);
+    DeQueue(&amp;queue);
+    TraverseQueue(queue);
+
+    return 0;
+}
+</code></pre>
+
+<p>有头节点</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 队伍每个节点
+typedef struct {
+    int data;
+    struct Node *next;
+} Node;
+
+typedef struct {
+    Node *front;
+    Node *rear;
+} Queue;
+
+// 初始化队伍
+Queue CreateQueue() {
+    // 分配给 Queue 存两个指针的内存
+    Queue *queue = (Queue *) malloc(sizeof(Queue));
+    // 分配首节点
+    Node *new_node = (Node *) malloc(sizeof(Node));
+    // 首节点下一个指向 NULL
+    new_node-&gt;next = NULL;
+    // queue 两指针指向首节点
+    queue-&gt;front = new_node;
+    queue-&gt;rear = new_node;
+
+    return *queue;
+}
+
+// 入队
+void EnQueue(Queue *queue, int data) {
+    // 建立新 node
+    Node *new_node = (Node *) malloc(sizeof(Node));
+    // 存值
+    new_node-&gt;data = data;
+    // 新 node 对成为队尾，队尾指向 NULL
+    new_node-&gt;next = NULL;
+    // 尾节点连接新 node
+    queue-&gt;rear-&gt;next = (struct Node *) new_node;
+    // 尾指针指向新 node
+    queue-&gt;rear = new_node;
+}
+
+// 出队
+void DeQueue(Queue *queue) {
+    // 判断是否为空队
+    if (queue-&gt;front == queue-&gt;rear) {
+        return;
+    }
+    // 备份队首
+    Node *t = queue-&gt;front-&gt;next;
+    // 出队
+    queue-&gt;front-&gt;next = t-&gt;next;
+    // 释放队首内存
+    free(t);
+}
+
+void TraverseQueue(Queue queue) {
+    queue.front = queue.front-&gt;next;
+    while (queue.rear != queue.front) {
+        printf(&quot;%d\n&quot;, queue.front-&gt;data);
+        queue.front = queue.front-&gt;next;
+    }
+    printf(&quot;%d\n&quot;, queue.front-&gt;data);
+};
+
+
+int main(void) {
+    Queue queue = CreateQueue();
+    EnQueue(&amp;queue, 1);
+    EnQueue(&amp;queue, 2);
+    EnQueue(&amp;queue, 3);
+    EnQueue(&amp;queue, 4);
+    EnQueue(&amp;queue, 5);
+
+    TraverseQueue(queue);
+
+    printf(&quot;###\n&quot;);
+
+    DeQueue(&amp;queue);
+    DeQueue(&amp;queue);
+    DeQueue(&amp;queue);
+    TraverseQueue(queue);
+
+
+    return 0;
+}
+</code></pre>
+
+<h3 id="双端队列">双端队列</h3>
+
+<p>双端队列即在队首，队尾都支持入队出队的队列，同样的可以顺序存储，或链式存储。不过顺序存储的话，如果是刚开始在 array[0] 处，无论是队首还是队尾都不能完全支持入队或出队，除非是在 array 中间某处开始。</p>
+
+<p>或者用 array 来实现环状的双端队列的话，也能实现，不过考虑的情况就有些多了，这里还是拿链式存储来做例子。</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709153514474-759575746.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><strong>定义</strong></p>
+
+<pre><code>typedef struct {
+    int data;
+    struct Node *next;
+    struct Node *pre;
+} Node;
+
+typedef struct {
+    Node *front;
+    Node *rear;
+} Deque;
+</code></pre>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709154115134-659688054.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709154150118-462142249.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><strong>初始化</strong></p>
+
+<p>同样的，链式存储的双端队列也有头尾节点或没有头尾节点的情况。</p>
+
+<p>没有头，尾节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709154351278-1441424112.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>Deque CreateDeque() {
+    Deque *deque = (Deque *) malloc(sizeof(Deque));
+    deque-&gt;rear = NULL;
+    deque-&gt;front = NULL;
+
+    return *deque;
+}
+</code></pre>
+
+<p>有头，尾节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709155639748-74119729.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>Deque CreateDeque() {
+    Deque *deque = (Deque *) malloc(sizeof(Deque));
+
+    Node *head_node = (Node *) malloc(sizeof(Node));
+    Node *tail_node = (Node *) malloc(sizeof(Node));
+
+    head_node-&gt;pre = NULL;
+    head_node-&gt;next = tail_node;
+    tail_node-&gt;next = NULL;
+    tail_node-&gt;pre = head_node;
+
+    deque-&gt;front = head_node;
+    deque-&gt;rear = tail_node;
+
+    return *deque;
+}
+</code></pre>
+
+<p>队列主要的操作就是入队和出队，而双端队列则有四种情况。</p>
+
+<p><strong>队首入队</strong></p>
+
+<p>有头节点</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709160609963-1025707089.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709160736075-255610205.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709160844888-270350279.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709165927445-494104192.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709165954773-225640807.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709170023940-543611572.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>void InsertFront(Deque *deque, int data) {
+    Node *new_node = (Node *) malloc(sizeof(Node));
+    new_node-&gt;data = data;
+    new_node-&gt;next = deque-&gt;front-&gt;next;
+    Node *t = deque-&gt;front-&gt;next;
+    t-&gt;pre = new_node;
+    deque-&gt;front-&gt;next = new_node;
+    new_node-&gt;pre = deque-&gt;front;
+}
+</code></pre>
+
+<p>没有头节点</p>
+
+<p>第一次入队</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709170201001-477059955.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709171025236-242945492.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709171235628-1004055481.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709171352154-208500699.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709171441048-305193196.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://img2020.cnblogs.com/blog/1823594/202007/1823594-20200709171815387-775050871.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<pre><code>void InsertFront(Deque *deque, int data) {
+    Node *new_node = (Node *) malloc(sizeof(Node));
+    new_node-&gt;data = data;
+
+    // 第一次入队
+    if (deque-&gt;front == NULL &amp;&amp; deque-&gt;rear == NULL) {
+        new_node-&gt;pre = NULL;
+        new_node-&gt;next = NULL;
+        deque-&gt;rear = new_node;
+        deque-&gt;front = new_node;
+        return;
+    }
+    // 第二次入队
+    if (deque-&gt;front-&gt;next == NULL &amp;&amp; deque-&gt;rear-&gt;pre == NULL) {
+        deque-&gt;front-&gt;next = new_node;
+        deque-&gt;rear = new_node;
+        new_node-&gt;next = NULL;
+        new_node-&gt;pre = deque-&gt;front;
+        return;
+    }
+    new_node-&gt;next = deque-&gt;front-&gt;next;
+    Node *t = deque-&gt;front-&gt;next;
+    t-&gt;pre = new_node;
+    deque-&gt;front-&gt;next = new_node;
+    new_node-&gt;pre = deque-&gt;front;
+}
+</code></pre>
+
+<p><strong>队首出队</strong></p>
+
+<p><strong>队尾入队</strong></p>
+
+<p><strong>队尾出队</strong></p>
+
+<h3 id="优先队列">优先队列</h3>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://segmentfault.com/a/1190000022089417" rel="nofollow noreferrer" target="_blank">数据结构之 循环队列</a>
+<a href="http://data.biancheng.net/view/173.html" rel="nofollow noreferrer" target="_blank">顺序队列</a>
+<a href="https://segmentfault.com/a/1190000022294283" rel="nofollow noreferrer" target="_blank">C 语言数据结构之链队列</a></p>
+
+<p><a href="http://data.biancheng.net/view/174.html" rel="nofollow noreferrer" target="_blank">链式队列及基本操作（C 语言）完全攻略</a></p>
+
+<p><a href="https://zh.wikipedia.org/wiki/%E9%98%9F%E5%88%97" rel="nofollow noreferrer" target="_blank">队列</a></p>
+
+<p><a href="a" rel="nofollow noreferrer" target="_blank">大话数据结构第4章</a></p>
+
+<p><a href="https://juejin.im/post/5e9490965188257396517a35" rel="nofollow noreferrer" target="_blank">数据结构与算法 07—— 链队列</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>edte </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://edte.github.io/2020/2020-07-08-%E5%9B%BE%E8%A7%A3%E9%98%9F%E5%88%97/>https://edte.github.io/2020/2020-07-08-%E5%9B%BE%E8%A7%A3%E9%98%9F%E5%88%97/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://edte.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                    #数据结构</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://edte.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://edte.github.io/2020/2020-06-21-i3-%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91/" class="prev" rel="prev" title="i3 用户指南（翻译）"><i class="iconfont icon-left"></i>&nbsp;i3 用户指南（翻译）</a>
+         
+        
+        <a href="https://edte.github.io/2020/2020-07-10-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%80%BB%E6%98%AF-stack-overflow/" class="next" rel="next" title="为什么你的程序总是 stack overflow?">为什么你的程序总是 stack overflow?&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+ <div class="post-comment">
+       
+             
+             
+             <span id="/2020/2020-07-08-%E5%9B%BE%E8%A7%A3%E9%98%9F%E5%88%97/" class="leancloud_visitors" data-flag-title="图解队列">
+                 <span class="post-meta-item-text">访问量 </span>
+                 <span class="leancloud-visitors-count"></span>
+                 <p></p>
+             </span>
+             <div id="vcomments"></div>
+             <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+             <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+             <script type="text/javascript">
+                 new Valine({
+                     el: '#vcomments' ,
+                     appId: 'jYOoQf1fiqM8W9yLLQFElx0b-MdYXbMMI',
+                     appKey: 'kBEzPfUjNEJ4MSrSRitotLRX',
+                     notify:  false ,
+                     verify:  false ,
+                     avatar:'mp',
+                     placeholder: '说点什么吧...',
+                     visitor:  true 
+                 });
+             </script>
+       
+ </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://edte.github.io/">edte</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go on a-simple-bolg</title>
+    <link>https://edte.github.io/tags/go/</link>
+    <description>Recent content in go on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>编写 go 语言时需要注意的那些规范</title>
+      <link>https://edte.github.io/2020/2020-07-12-%E7%BC%96%E5%86%99-go-%E8%AF%AD%E8%A8%80%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-07-12-%E7%BC%96%E5%86%99-go-%E8%AF%AD%E8%A8%80%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E8%A7%84%E8%8C%83/</guid>
+      <description>前言 这篇文章将总结在编写 go 代码中常遇到的一些代码规范问题，本文只设计那些众多语言都会遇到的规范，不深入 go 语言的具体编写规范，如 go 的错误处理，</description>
+    </item>
+    
+    <item>
+      <title>go builtin 包讲解</title>
+      <link>https://edte.github.io/2020/2020-06-09-go-builtin-%E5%8C%85%E8%AE%B2%E8%A7%A3/</link>
+      <pubDate>Tue, 09 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-06-09-go-builtin-%E5%8C%85%E8%AE%B2%E8%A7%A3/</guid>
+      <description>引言 这篇博客记录一下我学习 builtin 包的一些历程 介绍 我们知道，一门语言中的函数有两种类型，即内置函数和标准库函数，内置函数在直接内置在编译器中，而标</description>
+    </item>
+    
+    <item>
+      <title>go errors 包讲解</title>
+      <link>https://edte.github.io/2020/2020-06-02-go-errors-%E5%8C%85%E8%AE%B2%E8%A7%A3/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-06-02-go-errors-%E5%8C%85%E8%AE%B2%E8%A7%A3/</guid>
+      <description>引言 go 包实现了处理 error 的一些功能。 这是源码注释 // Package errors implements functions to manipulate errors. errors 包的源码放在 $GOROOT/src/errors 中 查看安装目录 go env GOROOT 为了方便阅读源码和调试，建议将源码复制后作为</description>
+    </item>
+    
+    <item>
+      <title>go 标识符命名指南</title>
+      <link>https://edte.github.io/2020/2020-06-01-go-%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-06-01-go-%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E6%8C%87%E5%8D%97/</guid>
+      <description>引言 对标识符的命名向来是程序员们苦恼的事，这篇文章将参考标准库和一些流行轮子的命名规范来总结一下标识符的命名。 基本准则 标识符命名由 Unicode 字母或下</description>
+    </item>
+    
+    <item>
+      <title>go 注释讲解</title>
+      <link>https://edte.github.io/2020/2020-06-01-go-%E6%B3%A8%E9%87%8A%E8%AE%B2%E8%A7%A3/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-06-01-go-%E6%B3%A8%E9%87%8A%E8%AE%B2%E8%A7%A3/</guid>
+      <description>引言 注释的重要性不言而寓，而怎么编写注释也是需要我们学习的，最好的学习教程就是源码，这篇文章将大量参考 go 库文件源码。 分类 go 的注释有行注释 // 和</description>
+    </item>
+    
+  </channel>
+</rss>

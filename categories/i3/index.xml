@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>i3 on a-simple-bolg</title>
+    <link>https://edte.github.io/categories/i3/</link>
+    <description>Recent content in i3 on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/categories/i3/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>i3 用户指南（翻译）</title>
+      <link>https://edte.github.io/2020/2020-06-21-i3-%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-06-21-i3-%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91/</guid>
+      <description>前言 这篇文章是 i3 User’s Guide 的中文翻译，主要是因为国内 i3 比较小众，相关的配置博客都只是讲了他做了些什么，而没有讲为什么要这么做，以及其他 i3</description>
+    </item>
+    
+  </channel>
+</rss>

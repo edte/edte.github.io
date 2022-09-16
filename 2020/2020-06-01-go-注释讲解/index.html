@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="edte">
+  
+  
+  
+  <link rel="prev" href="https://edte.github.io/2020/2020-06-01-%E5%85%85%E7%94%B5%E5%AE%9D%E9%80%89%E8%B4%AD%E6%8C%87%E5%8D%97/" />
+  <link rel="next" href="https://edte.github.io/2020/2020-06-01-go-%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E6%8C%87%E5%8D%97/" />
+  <link rel="canonical" href="https://edte.github.io/2020/2020-06-01-go-%E6%B3%A8%E9%87%8A%E8%AE%B2%E8%A7%A3/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           go 注释讲解 | a-simple-bolg
+       
+  </title>
+  <meta name="title" content="go 注释讲解 | a-simple-bolg">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https://edte.github.io/"
+    },
+    "articleSection" : "posts",
+    "name" : "go 注释讲解",
+    "headline" : "go 注释讲解",
+    "description" : "引言 注释的重要性不言而寓，而怎么编写注释也是需要我们学习的，最好的学习教程就是源码，这篇文章将大量参考 go 库文件源码。 分类 go 的注释有行注释 // 和",
+    "inLanguage" : "en-us",
+    "author" : "edte",
+    "creator" : "edte",
+    "publisher": "edte",
+    "accountablePerson" : "edte",
+    "copyrightHolder" : "edte",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-01 00:00:00 &#43;0000 UTC",
+    "dateModified" : "2020-06-01 00:00:00 &#43;0000 UTC",
+    "url" : "https://edte.github.io/2020/2020-06-01-go-%E6%B3%A8%E9%87%8A%E8%AE%B2%E8%A7%A3/",
+    "wordCount" : "1276",
+    "keywords" : [ "go", "a-simple-bolg"]
+}
+</script>
+
+    <link href="//use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://edte.github.io/">a-simple-bolg</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://edte.github.io/">a-simple-bolg</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">go 注释讲解</h1>
+        <div class="post-meta">
+           
+          <span class="post-time">
+         <i class="far fa-calendar-alt"></i>  <time datetime=2020-06-01 itemprop="datePublished">2020-06-01</time>
+           </span>
+         <i class="far fa-file-word"></i> <span class="post-word-count"> 1276 字</span>
+         <i class="far fa-clock"></i> <span class="more-meta"> 3 分钟</span>
+        </div>
+    </header>
+        
+          <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title"></h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#引言">引言</a></li>
+<li><a href="#分类">分类</a></li>
+<li><a href="#应用">应用</a>
+<ul>
+<li><a href="#文件注释">文件注释</a></li>
+<li><a href="#包注释">包注释</a></li>
+<li><a href="#函数注释">函数注释</a></li>
+<li><a href="#数据类型注释">数据类型注释</a></li>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#fixme">FIXME</a></li>
+<li><a href="#xxx">XXX</a></li>
+</ul></li>
+<li><a href="#godoc">godoc</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+<script type="text/javascript">
+  window.onload = function () {
+    var fix = $('.post-toc');
+    var end = $('.post-comment');
+    var fixTop = fix.offset().top, fixHeight = fix.height();
+    var endTop, miss;
+    var offsetTop = fix[0].offsetTop;
+    $(window).scroll(function () {
+      var docTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+      if (end.length > 0) {
+        endTop = end.offset().top;
+        miss = endTop - docTop - fixHeight;
+      }
+      if (fixTop < docTop) {
+        fix.css({ 'position': 'fixed' });
+        if ((end.length > 0) && (endTop < (docTop + fixHeight))) {
+          fix.css({ top: miss });
+        } else {
+          fix.css({ top: 0 });
+        }
+      } else {
+        fix.css({ 'position': 'absolute' });
+        fix.css({ top: offsetTop });
+      }
+    })
+  }
+</script> 
+
+        
+
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="引言">引言</h2>
+
+<p>注释的重要性不言而寓，而怎么编写注释也是需要我们学习的，最好的学习教程就是源码，这篇文章将大量参考 go 库文件源码。</p>
+
+<h2 id="分类">分类</h2>
+
+<p>go 的注释有行注释 <code>//</code> 和块注释 <code>/* */</code> 之分。在实际的使用中，行注释使用得比较多，块注释主要用于格式化大段代码或包的注释中使用。</p>
+
+<p>在 goland 中行注释的快捷键为 <code>Ctrl+/</code>, 块注释的快捷键为 <code>Ctrl+Shift+/</code></p>
+
+<h2 id="应用">应用</h2>
+
+<h3 id="文件注释">文件注释</h3>
+
+<p>在每个文件中前都加上一段注释，这段注释用来描述 作者，时间，以及版权。</p>
+
+<p>我们可以随便打开一个包查看，如 builtin.go 包中</p>
+
+<pre><code>// Copyright 2011 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+</code></pre>
+
+<p>就有时间 2011,作者 go，和版权，我们可以随便打开其他文件，可以发现只有时间在变，而其他都没有变化。</p>
+
+<p>在 goland 中可以在 <code>Settings/Editor/File and Code Templates/Files/Go File</code> 中寻改文件注释模板，这样每次新建文件都会自动生成注释。</p>
+
+<p>这是我的模板</p>
+
+<pre><code>//@program: ${PROJECT_NAME}
+//@author: edte
+//@create: ${YEAR}-${MONTH}-${DAY} ${HOUR}:${MINUTE}
+package ${GO_PACKAGE_NAME}
+</code></pre>
+
+<h3 id="包注释">包注释</h3>
+
+<p>包注释用来描述介绍这个包，以及提供包的一些信息。</p>
+
+<p>在 go 中，一个 目录中只有一个包（不包扩子目录），所以一个包中可以有多个文件，一般在其中一个文件写上包注释即可。</p>
+
+<p>同样的，我们来看 builtin 这个包 中的 builtin.go 文件</p>
+
+<pre><code>/*
+	Package builtin provides documentation for Go's predeclared identifiers.
+	The items documented here are not actually in package builtin
+	but their descriptions here allow godoc to present documentation
+	for the language's special identifiers.
+*/
+</code></pre>
+
+<p>可以看到 builtin 包的作用是给预定义标识符提供文档。</p>
+
+<p>我们同样来看 errors 包中的 errors.go 文件，可以看到包注释很长</p>
+
+<pre><code>// Package errors implements functions to manipulate errors.
+</code></pre>
+
+<p>这里讲了包 errors 实现了一些处理错误的功能。</p>
+
+<pre><code>// The New function creates errors whose only content is a text message.
+//
+// The Unwrap, Is and As functions work on errors that may wrap other errors.
+</code></pre>
+
+<p>后面还有一大堆，讲了 errors 包相关的文件，原理，应用等信息。</p>
+
+<p>如果我们继续查看源码，会发现包注释都是以 <code>package + 一个动词</code> 开头的，一般这个短句就说明了这个包的功能，然后再视具体的包说明包的其他信息。</p>
+
+<h3 id="函数注释">函数注释</h3>
+
+<p>函数注释用来描述函数的功能，以及其他相关的信息。</p>
+
+<p>我们同样来看 errros 包中的 errors.go 文件</p>
+
+<pre><code>// New returns an error that formats as the given text.
+// Each call to New returns a distinct error value even if the text is identical.
+func New(text string) error {
+	return &amp;errorString{text}
+}
+</code></pre>
+
+<p>这里用一句话说明了 New 功能的作用，即返回一个自定义的错误。</p>
+
+<p>然后又用一句话说了这个函数相关的特点，即使文本相同，每次对New的调用也会返回一个不同的错误值。</p>
+
+<p>如果同样查看其他源码中的函数，我们发现一般几乎都是 <code>函数名 + 一个动词</code> 的句子开头。这个句子同样说明了这个函数的作用，即函数干了些什么。</p>
+
+<p>而其他需要讲解的信息则以复杂度为基础，如果感觉某个点不容易理解，那么最好都要写注释，如函数签名，函数原理，函数使用过程中需要注意的点等。</p>
+
+<h3 id="数据类型注释">数据类型注释</h3>
+
+<p>数据类型注释说明 这个数据类型用来干什么。</p>
+
+<p>如 errors.go 中</p>
+
+<pre><code>// errorString is a trivial implementation of error.
+type errorString struct {
+	s string
+}
+</code></pre>
+
+<p>这里就说明了  errorString 的作用，即 error 的具体实现。</p>
+
+<p>如 built.go 中</p>
+
+<pre><code>// bool is the set of boolean values, true and false.
+type bool bool
+
+// true and false are the two untyped boolean values.
+const (
+	true  = 0 == 0 // Untyped bool.
+	false = 0 != 0 // Untyped bool.
+)
+
+// The error built-in interface type is the conventional interface for
+// representing an error condition, with the nil value representing no error.
+type error interface {
+	Error() string
+}
+</code></pre>
+
+<p>几乎都是以 <code>类型名 + is</code>开头的句子，这个句子说明了这个类型的作用。</p>
+
+<h3 id="todo">TODO</h3>
+
+<p>TODO 即 to do, 是一个特殊的注释，表明在此处有功能等待编写，</p>
+
+<h3 id="fixme">FIXME</h3>
+
+<p>FIXME 即 fix me, 也是一个特殊的注释，表明此处的功能需要修正，甚至不能运行</p>
+
+<h3 id="xxx">XXX</h3>
+
+<p>XXX 也是一个特殊的注释，表明此处的功能实现方法有点问题，需要更改</p>
+
+<h2 id="godoc">godoc</h2>
+
+<p>godoc 是一个实用的工具，可以根据特定的注释格式生成文档。也可以用来查看文档，同样的 go doc 命令也是相似的作用，具体的可以查看这篇文章。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://learnku.com/docs/effective-go/2020/code-annotation/6238" rel="nofollow noreferrer" target="_blank"> 代码注释</a></p>
+
+<p><a href="https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/comments/" rel="nofollow noreferrer" target="_blank">注释</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>edte </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://edte.github.io/2020/2020-06-01-go-%E6%B3%A8%E9%87%8A%E8%AE%B2%E8%A7%A3/>https://edte.github.io/2020/2020-06-01-go-%E6%B3%A8%E9%87%8A%E8%AE%B2%E8%A7%A3/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://edte.github.io/tags/go/">
+                    #go</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://edte.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://edte.github.io/2020/2020-06-01-%E5%85%85%E7%94%B5%E5%AE%9D%E9%80%89%E8%B4%AD%E6%8C%87%E5%8D%97/" class="prev" rel="prev" title="充电宝选购指南"><i class="iconfont icon-left"></i>&nbsp;充电宝选购指南</a>
+         
+        
+        <a href="https://edte.github.io/2020/2020-06-01-go-%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E6%8C%87%E5%8D%97/" class="next" rel="next" title="go 标识符命名指南">go 标识符命名指南&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+ <div class="post-comment">
+       
+             
+             
+             <span id="/2020/2020-06-01-go-%E6%B3%A8%E9%87%8A%E8%AE%B2%E8%A7%A3/" class="leancloud_visitors" data-flag-title="go 注释讲解">
+                 <span class="post-meta-item-text">访问量 </span>
+                 <span class="leancloud-visitors-count"></span>
+                 <p></p>
+             </span>
+             <div id="vcomments"></div>
+             <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+             <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+             <script type="text/javascript">
+                 new Valine({
+                     el: '#vcomments' ,
+                     appId: 'jYOoQf1fiqM8W9yLLQFElx0b-MdYXbMMI',
+                     appKey: 'kBEzPfUjNEJ4MSrSRitotLRX',
+                     notify:  false ,
+                     verify:  false ,
+                     avatar:'mp',
+                     placeholder: '说点什么吧...',
+                     visitor:  true 
+                 });
+             </script>
+       
+ </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://edte.github.io/">edte</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

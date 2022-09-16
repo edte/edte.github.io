@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>c on a-simple-bolg</title>
+    <link>https://edte.github.io/categories/c/</link>
+    <description>Recent content in c on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/categories/c/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>为什么你的程序总是 stack overflow?</title>
+      <link>https://edte.github.io/2020/2020-07-10-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%80%BB%E6%98%AF-stack-overflow/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-07-10-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%80%BB%E6%98%AF-stack-overflow/</guid>
+      <description>前言 在刷 leetcode 时，遇到了 stack-buffer-overflow, 这个问题比较常见，干脆总结一下原因。本文是在 linux 下操作的，需要使用一些相关的命令。 stack 是什么 一般 stack 这个词有两个意思，即 stack 这</description>
+    </item>
+    
+  </channel>
+</rss>

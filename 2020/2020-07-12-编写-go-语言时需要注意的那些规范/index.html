@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="edte">
+  
+  
+  
+  <link rel="prev" href="https://edte.github.io/2020/2020-07-10-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%80%BB%E6%98%AF-stack-overflow/" />
+  
+  <link rel="canonical" href="https://edte.github.io/2020/2020-07-12-%E7%BC%96%E5%86%99-go-%E8%AF%AD%E8%A8%80%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E8%A7%84%E8%8C%83/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           编写 go 语言时需要注意的那些规范 | a-simple-bolg
+       
+  </title>
+  <meta name="title" content="编写 go 语言时需要注意的那些规范 | a-simple-bolg">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https://edte.github.io/"
+    },
+    "articleSection" : "posts",
+    "name" : "编写 go 语言时需要注意的那些规范",
+    "headline" : "编写 go 语言时需要注意的那些规范",
+    "description" : "前言 这篇文章将总结在编写 go 代码中常遇到的一些代码规范问题，本文只设计那些众多语言都会遇到的规范，不深入 go 语言的具体编写规范，如 go 的错误处理，",
+    "inLanguage" : "en-us",
+    "author" : "edte",
+    "creator" : "edte",
+    "publisher": "edte",
+    "accountablePerson" : "edte",
+    "copyrightHolder" : "edte",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-07-12 00:00:00 &#43;0000 UTC",
+    "dateModified" : "2020-07-12 00:00:00 &#43;0000 UTC",
+    "url" : "https://edte.github.io/2020/2020-07-12-%E7%BC%96%E5%86%99-go-%E8%AF%AD%E8%A8%80%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E8%A7%84%E8%8C%83/",
+    "wordCount" : "2725",
+    "keywords" : [ "go", "a-simple-bolg"]
+}
+</script>
+
+    <link href="//use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://edte.github.io/">a-simple-bolg</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://edte.github.io/">a-simple-bolg</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">编写 go 语言时需要注意的那些规范</h1>
+        <div class="post-meta">
+           <i class="far fa-folder-open"></i>
+                <span class="post-category">
+                        <a href="https://edte.github.io/categories/go/"> go </a>
+                        
+                </span>
+          <span class="post-time">
+         <i class="far fa-calendar-alt"></i>  <time datetime=2020-07-12 itemprop="datePublished">2020-07-12</time>
+           </span>
+         <i class="far fa-file-word"></i> <span class="post-word-count"> 2725 字</span>
+         <i class="far fa-clock"></i> <span class="more-meta"> 6 分钟</span>
+        </div>
+    </header>
+        
+          <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title"></h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#标识符命名">标识符命名</a></li>
+<li><a href="#注释">注释</a></li>
+<li><a href="#代码风格">代码风格</a></li>
+<li><a href="#行长">行长</a></li>
+<li><a href="#函数长度">函数长度</a></li>
+<li><a href="#导包">导包</a></li>
+<li><a href="#相似声明">相似声明</a></li>
+<li><a href="#函数分组和顺序">函数分组和顺序</a></li>
+<li><a href="#代码顺序">代码顺序</a></li>
+<li><a href="#测试">测试</a></li>
+<li><a href="#项目目录">项目目录</a></li>
+<li><a href="#总结">总结</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+<script type="text/javascript">
+  window.onload = function () {
+    var fix = $('.post-toc');
+    var end = $('.post-comment');
+    var fixTop = fix.offset().top, fixHeight = fix.height();
+    var endTop, miss;
+    var offsetTop = fix[0].offsetTop;
+    $(window).scroll(function () {
+      var docTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+      if (end.length > 0) {
+        endTop = end.offset().top;
+        miss = endTop - docTop - fixHeight;
+      }
+      if (fixTop < docTop) {
+        fix.css({ 'position': 'fixed' });
+        if ((end.length > 0) && (endTop < (docTop + fixHeight))) {
+          fix.css({ top: miss });
+        } else {
+          fix.css({ top: 0 });
+        }
+      } else {
+        fix.css({ 'position': 'absolute' });
+        fix.css({ top: offsetTop });
+      }
+    })
+  }
+</script> 
+
+        
+
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="前言">前言</h2>
+
+<p>这篇文章将总结在编写 go 代码中常遇到的一些代码规范问题，本文只设计那些众多语言都会遇到的规范，不深入 go 语言的具体编写规范，如 go 的错误处理，并发处理等。</p>
+
+<h2 id="标识符命名">标识符命名</h2>
+
+<p>标识符的命名没有唯一的准则，在不同的语言中有着不同的规范，不同的团队也有着不同的规范。只要符合两个规则即可：模式化，易读。
+最好的规范就是源码，标准库的规范是非常值得我们学习，可以查看我以前写的这篇文章 <a href="https://edte.github.io/2020/2020-06-01-go-标识符命名指南/" rel="nofollow noreferrer" target="_blank">go 标识符命名指南</a></p>
+
+<h2 id="注释">注释</h2>
+
+<p>良好的注释有利于理清自己的思路，同时也便于合作的伙伴阅读。同样可以看一下这篇文章 <a href="https://edte.github.io/2020/2020-06-01-go-注释讲解/" rel="nofollow noreferrer" target="_blank">go 注释讲解</a></p>
+
+<h2 id="代码风格">代码风格</h2>
+
+<p>在其他语言中有一些让我们难以选择的问题，如大括号的位置，空格的使用，缩进等等，在 go 中已经有一些硬性规定和现成的工具使用。
+<code>go fmt</code> 是 go 官方提供的一个工具，使用这个工具会自动格式化代码，我们规定代码都需要使用这个工具来格式化代码。
+如</p>
+
+<pre><code>1.package main
+2.
+3.import &quot;fmt&quot;
+4.
+5.func main() {
+6.        fmt.Println(&quot;hello world&quot;)
+7.    a := 1+   2
+8.}
+</code></pre>
+
+<p>使用 <code>go fmt main.go</code></p>
+
+<pre><code>1.package main
+2.
+3.import &quot;fmt&quot;
+4.
+5.func main() {
+6.    fmt.Println(&quot;hello world&quot;)
+7.    a := 1 + 2
+8.}
+</code></pre>
+
+<p>在 Goland 中，可以使用 <code>Ctrl+Alt+L</code> 快捷键格式化代码，可以养成在编写代码时经常格式化代码的习惯。</p>
+
+<h2 id="行长">行长</h2>
+
+<p>代码是怎样的风格，编译器并不知道，对代码风格进行规定是为了便于人阅读，而硬性规定则是保证团队不用在这个上面再花费时间。
+对于行长来说，这就是一个比较客观的规定，在以前，python 和 linux 的源码都规定不能超过 80 字符，不过现在随着显示器的发展，这个要求没有那么死了，具体的长度可以看团队中大部分人使用多少尺寸的显示器，最好行长能够在显示器上直接显示，而无需移动屏幕。
+对于规定来说，靠人来判断是低效率的行为，可以使用工具来统一，在 Goland 中，可以在 <code>settings-&gt;editor-&gt;code style</code> 中修改代码行长。</p>
+
+<h2 id="函数长度">函数长度</h2>
+
+<p>类似于行长，一个函数的长度也是我们需要考虑的。在实际编码中，并不需要把函数长度这种东西硬性规定，但是我们应该有这个意识，代码长度最好在一个屏幕前就能看完，而不需要移动。
+同时，我们也应该意识到，一个函数就应该只做函数名所规定的功能，如果函数过于冗长，或者你发现函数中开始加入了其他功能，你就应该考虑拆分函数了。</p>
+
+<h2 id="导包">导包</h2>
+
+<p><strong>分组</strong>
+可以把导入的包分为两组，把标准库和其他库分开，标准库放在前面
+这是 gin 项目 gin 文件，可以参考一下</p>
+
+<pre><code>1.import (
+2.    &quot;fmt&quot;
+3.    &quot;html/template&quot;
+4.    &quot;net&quot;
+5.    &quot;net/http&quot;
+6.    &quot;os&quot;
+7.    &quot;path&quot;
+8.    &quot;sync&quot;
+9.
+10.    &quot;github.com/gin-gonic/gin/internal/bytesconv&quot;
+11.    &quot;github.com/gin-gonic/gin/render&quot;
+12.)
+</code></pre>
+
+<p>或者分为三类，从上到下分别为标准库，此项目，其他库</p>
+
+<pre><code>1.import (
+2.    &quot;encoding/json&quot;
+3.    &quot;strings&quot;
+4.
+5.    &quot;myproject/models&quot;
+6.    &quot;myproject/controller&quot;
+7.    &quot;myproject/utils&quot;
+8.
+9.    &quot;github.com/astaxie/beego&quot;
+10.    &quot;github.com/go-sql-driver/mysql&quot;
+11.)  
+</code></pre>
+
+<p>在 Goland 中，在 <code>settings -&gt; editor -&gt; code style -&gt; Go -&gt; Imports</code> 中可以修改默认导包情况。</p>
+
+<p><strong>路径</strong>
+导包不要使用相对路径，相对路径只是你的电脑的包路径，不具有迁移性，全使用绝对路径</p>
+
+<p><strong>别名</strong>
+如果包的名字和导入路径的最后一个元素不匹配，则需要使用别名</p>
+
+<pre><code>1.import (
+2.  &quot;net/http&quot;
+3.
+4.  client &quot;example.com/client-go&quot;
+5.  trace &quot;example.com/trace/v2&quot;
+6.)
+</code></pre>
+
+<p>当包名冲突时，才使用别名，没有冲突则别使用别名，同时给包名起名时应避免和标准库重名</p>
+
+<pre><code>1.import (
+2.  &quot;fmt&quot;
+3.  &quot;os&quot;
+4.  &quot;runtime/trace&quot;
+5.
+6.  nettrace &quot;golang.net/x/trace&quot;
+7.)
+</code></pre>
+
+<h2 id="相似声明">相似声明</h2>
+
+<p>对变量，常量，类型的声明，应该把相似声明的声明放在一组，这样逻辑更加清晰，就像 import 包分开一样。</p>
+
+<pre><code>1.const (
+2.  a = 1
+3.  b = 2
+4.)
+5.
+6.var (
+7.  a = 1
+8.  b = 2
+9.)
+10.
+11.type (
+12.  Area float64
+13.  Volume float64
+14.)
+</code></pre>
+
+<h2 id="函数分组和顺序">函数分组和顺序</h2>
+
+<p>在 go 中经常是这样生成函数的：</p>
+
+<pre><code>1.先生成一个类型，如 struct
+2.然后生成一个类型的 constructor，即 New 函数
+3.然后是这个类型的方法
+</code></pre>
+
+<p>在 go 中，涉及这种函数的使用时，应该按这个顺序来放代码</p>
+
+<pre><code>1.type something struct{ ... }
+2.
+3.func newSomething() *something {
+4.    return &amp;something{}
+5.}
+6.
+7.func (s *something) Cost() {
+8.  return calcCost(s.weights)
+9.}
+10.
+11.func (s *something) Stop() {...}
+12.
+13.func calcCost(n []int) int {...}
+</code></pre>
+
+<h2 id="代码顺序">代码顺序</h2>
+
+<p>上面讲了常见的函数顺序，现在来讲一下 go 文件的常见排序
+先不说注释，一般是这样的</p>
+
+<pre><code>1.包名
+2.导包  // 注意分组
+3.需要在包中使用的变量，常量，类型，接口等  // 注意分组
+4.然后设计类型方法的，按上面那样排序列出函数
+5.一些普通的，但是需要放在这个文件里的函数
+</code></pre>
+
+<p>如 gin 项目的 gin 文件</p>
+
+<p><strong>包名</strong></p>
+
+<pre><code>1.package gin
+</code></pre>
+
+<p><strong>类型</strong></p>
+
+<pre><code>1.const defaultMultipartMemory = 32 &lt;&lt; 20 // 32 MB
+2.
+3.var (
+4.    default404Body   = []byte(&quot;404 page not found&quot;)
+5.    default405Body   = []byte(&quot;405 method not allowed&quot;)
+6.    defaultAppEngine bool
+7.)
+</code></pre>
+
+<p><strong>类型和方法</strong></p>
+
+<pre><code>1.// HandlersChain defines a HandlerFunc array.
+2.type HandlersChain []HandlerFunc
+3.
+4.// Last returns the last handler in the chain. ie. the last handler is the main one.
+5.func (c HandlersChain) Last() HandlerFunc {
+6.    if length := len(c); length &gt; 0 {
+7.        return c[length-1]
+8.    }
+9.    return nil
+10.}
+</code></pre>
+
+<p><strong>普通的函数</strong></p>
+
+<pre><code>1.func redirectFixedPath(c *Context, root *node, trailingSlash bool) bool {
+2.    req := c.Request
+3.    rPath := req.URL.Path
+4.
+5.    if fixedPath, ok := root.findCaseInsensitivePath(cleanPath(rPath), trailingSlash); ok {
+6.        req.URL.Path = bytesconv.BytesToString(fixedPath)
+7.        redirectRequest(c)
+8.        return true
+9.    }
+10.    return false
+11.}
+12.
+13.func redirectRequest(c *Context) {
+14.    req := c.Request
+15.    rPath := req.URL.Path
+16.    rURL := req.URL.String()
+17.
+18.    code := http.StatusMovedPermanently // Permanent redirect, request with GET method
+19.    if req.Method != http.MethodGet {
+20.        code = http.StatusTemporaryRedirect
+21.    }
+22.    debugPrint(&quot;redirecting request %d: %s --&gt; %s&quot;, code, rPath, rURL)
+23.    http.Redirect(c.Writer, req, rURL, code)
+24.    c.writermem.WriteHeaderNow()
+25.}
+</code></pre>
+
+<h2 id="测试">测试</h2>
+
+<p><strong>单元测试</strong>
+我们有时会遇到一个笑话，测试人员对代码进行了多次测试，而用户出乎意料的操作却让程序崩溃了。作为开发人员，对代码进行测试也是需要掌握的基本技能。单元测试即对每个函数可能遇到的各种情况都进行测试，那么无论用户进行怎样的输入，程序都能够处理，这也就是我们常说的程序健壮性好。
+在 go 中，官方提供了 <code>go test</code> 工具用来单元测试，一般我们都是使用这个工具来进行单元测试。
+单元测试有几点要求：</p>
+
+<pre><code>1.测试文件必须以 _test.go 结尾
+2.测试函数必须以 Test 开头
+3.测试函数参数必须是 t *testing.T
+</code></pre>
+
+<p>如 <code>add.go</code> 文件中</p>
+
+<pre><code>1.func Add(a int, b int) int {
+2.    return a + b
+3.}
+</code></pre>
+
+<p>测试文件 <code>add_test.go</code> 中</p>
+
+<pre><code>1.func TestAdd(t *testing.T) {
+2.    fmt.Println(Add(1, 2))
+3.}
+</code></pre>
+
+<p>使用 go test 测试</p>
+
+<pre><code>1.$ go test add.go add_test.go 
+2.ok      command-line-arguments  0.001s
+</code></pre>
+
+<p>可以看到测试通过了。</p>
+
+<p><strong>性能测试</strong>
+单元测试是为了测试函数能否通过，而性能测试则是测试代码的性能。
+比如我们有时候需要把 int 转换为 string，需要知道几种转换方法之间的效率，或者想知道遍历 map 和遍历 array 的效率区别，就可以使用性能测试。</p>
+
+<p>同样的，我们可以利用 <code>go test</code> 工具进行性能测试
+性能测试也有几点要求</p>
+
+<pre><code>1.测试文件以 _test.go 结尾
+2.测试函数以 Benchmark 开头
+3.测试函数以 b *testing.B 为参数
+</code></pre>
+
+<p>测试文件 <code>itoa_test.go</code></p>
+
+<pre><code>1.func BenchmarkSprintf(b *testing.B){
+2.    num:=10
+3.    b.ResetTimer()
+4.    for i:=0;i&lt;b.N;i++{
+5.        fmt.Sprintf(&quot;%d&quot;,num)
+6.    }
+7.}
+</code></pre>
+
+<p>使用命令</p>
+
+<pre><code>1.$ go test itoa_test.go -bench=. -run=none
+2.goos: linux
+3.goarch: amd64
+4.BenchmarkSprintf-6      15505934                75.6 ns/op
+5.PASS
+6.ok      command-line-arguments  1.254s
+</code></pre>
+
+<p>就能看到测试成功了，由于我们这里只是为了说明 go 中测试文件的使用和存在，所以就不展开讲了，需要具体学习可以参考其他书籍。</p>
+
+<h2 id="项目目录">项目目录</h2>
+
+<p>编写一个项目时，怎么管理项目的目录也是非常重要的一点。良好的项目目录表明这个项目架构清晰，在 debug 时，项目结构清晰，很容易就能找到 bug 的所在，同时在阅读代码时，良好的项目目录也能便于我们阅读。
+一般我们使用 go 语言都是编写 web 项目，所以只需要参考那些 web 项目是怎么组织项目的即可。一般的 web 项目（后端）使用分层架构，如 MVC，MVP，MVVM 架构等
+如果是个人开发小型项目的话，没有在编写代码前规划好项目结构，就只能不断的重构才能有一个好的项目结构。所以如果项目结构有问题，也没有什么，多参考那些优秀代码的项目目录，阅读那些总结好的项目结构，如 <a href="https://github.com/golang-standards/project-layout" rel="nofollow noreferrer" target="_blank">project-layout</a>， 再不断的重构。
+当然，最好是在编写代码前就已经设计好项目结构，这样是最好的。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>本文总结了一些在编写高级语言中都常会遇到的问题，如标识符命名，注释，项目目录等问题，这篇文章并不是指南，不要求完全按照上面的来做，同时有许多点也没有展开来讲。重要的是希望你能注意到这些问题，而具体的操作可以直接查看标准库源码，优秀库源码，或者参考那些大公司的规范。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://learnku.com/docs/effective-go/2020" rel="nofollow noreferrer" target="_blank">高效的 Go 编程 Effective Go</a></p>
+
+<p><a href="https://studygolang.com/articles/2059" rel="nofollow noreferrer" target="_blank">Go 编码规范指南</a></p>
+
+<p>[<a href="https://zhuanlan.zhihu.com/p/63250689#三、代码风格" rel="nofollow noreferrer" target="_blank">代码规范] Go 语言编码规范指导</a></p>
+
+<p><a href="https://github.com/golang/go/wiki/CodeReviewComments#comment-sentences" rel="nofollow noreferrer" target="_blank">CodeReviewComments</a></p>
+
+<p><a href="https://github.com/xxjwxc/uber_go_guide_cn#顶层变量声明" rel="nofollow noreferrer" target="_blank">Uber Go 语言编码规范</a></p>
+
+<p><a href="https://github.com/llitfkitfk/go-best-practice#6-api-设计" rel="nofollow noreferrer" target="_blank">Go 语言实战：编写可维护 Go 语言代码建议</a></p>
+
+<p><a href="https://github.com/Unknwon/go-code-convention/blob/master/zh-CN/README.md" rel="nofollow noreferrer" target="_blank">编码规范</a></p>
+
+<p><a href="http://objcoding.com/2018/09/14/go-test/" rel="nofollow noreferrer" target="_blank">go test 单元测试</a></p>
+
+<p><a href="https://zhuanlan.zhihu.com/p/124198314" rel="nofollow noreferrer" target="_blank">Go 项目组织实践</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>edte </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://edte.github.io/2020/2020-07-12-%E7%BC%96%E5%86%99-go-%E8%AF%AD%E8%A8%80%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E8%A7%84%E8%8C%83/>https://edte.github.io/2020/2020-07-12-%E7%BC%96%E5%86%99-go-%E8%AF%AD%E8%A8%80%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E8%A7%84%E8%8C%83/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://edte.github.io/tags/go/">
+                    #go</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://edte.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://edte.github.io/2020/2020-07-10-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%80%BB%E6%98%AF-stack-overflow/" class="prev" rel="prev" title="为什么你的程序总是 stack overflow?"><i class="iconfont icon-left"></i>&nbsp;为什么你的程序总是 stack overflow?</a>
+         
+        
+    </div>
+
+ <div class="post-comment">
+       
+             
+             
+             <span id="/2020/2020-07-12-%E7%BC%96%E5%86%99-go-%E8%AF%AD%E8%A8%80%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E8%A7%84%E8%8C%83/" class="leancloud_visitors" data-flag-title="编写 go 语言时需要注意的那些规范">
+                 <span class="post-meta-item-text">访问量 </span>
+                 <span class="leancloud-visitors-count"></span>
+                 <p></p>
+             </span>
+             <div id="vcomments"></div>
+             <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+             <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+             <script type="text/javascript">
+                 new Valine({
+                     el: '#vcomments' ,
+                     appId: 'jYOoQf1fiqM8W9yLLQFElx0b-MdYXbMMI',
+                     appKey: 'kBEzPfUjNEJ4MSrSRitotLRX',
+                     notify:  false ,
+                     verify:  false ,
+                     avatar:'mp',
+                     placeholder: '说点什么吧...',
+                     visitor:  true 
+                 });
+             </script>
+       
+ </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://edte.github.io/">edte</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

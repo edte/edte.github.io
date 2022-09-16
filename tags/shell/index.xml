@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on a-simple-bolg</title>
+    <link>https://edte.github.io/tags/shell/</link>
+    <description>Recent content in shell on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>zsh 配置</title>
+      <link>https://edte.github.io/2020/2020-03-24-zsh-%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Tue, 24 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-24-zsh-%E9%85%8D%E7%BD%AE/</guid>
+      <description>[toc] shell 准备 查看系统已有的 shell cat /etc/shells 安装 zsh manjaro 内置已经支持 zsh centos yum install zsh 安装 oh my zsh sh -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;quot; or sh -c &amp;quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&amp;quot; 切换系统 shell chsh -s /bin/zsh oh-my-zsh 配置 配置文件 配置文件是 ~/.zshrc 修改配</description>
+    </item>
+    
+  </channel>
+</rss>

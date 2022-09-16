@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>购物 on a-simple-bolg</title>
+    <link>https://edte.github.io/tags/%E8%B4%AD%E7%89%A9/</link>
+    <description>Recent content in 购物 on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/tags/%E8%B4%AD%E7%89%A9/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>充电宝选购指南</title>
+      <link>https://edte.github.io/2020/2020-06-01-%E5%85%85%E7%94%B5%E5%AE%9D%E9%80%89%E8%B4%AD%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-06-01-%E5%85%85%E7%94%B5%E5%AE%9D%E9%80%89%E8%B4%AD%E6%8C%87%E5%8D%97/</guid>
+      <description>介绍 移动电源(power bank) 是一种随身携带，能为电子产品充电的便携式充电器。 一般我们所说的充电宝就是功率比较小的移动电源，只能给小型电子设备充</description>
+    </item>
+    
+  </channel>
+</rss>

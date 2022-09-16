@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>安卓 on a-simple-bolg</title>
+    <link>https://edte.github.io/categories/%E5%AE%89%E5%8D%93/</link>
+    <description>Recent content in 安卓 on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/categories/%E5%AE%89%E5%8D%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>pixel 2 搞机备份</title>
+      <link>https://edte.github.io/2020/2020-05-14-pixel-2-%E6%90%9E%E6%9C%BA%E5%A4%87%E4%BB%BD/</link>
+      <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-05-14-pixel-2-%E6%90%9E%E6%9C%BA%E5%A4%87%E4%BB%BD/</guid>
+      <description>刷机一时爽，忘记备份火葬厂 今天手痒，一番瞎折腾，忘记备份了，结果无限卡 fastboot, 然后我一年多的数据就凉了，这是泪的教训。。。（哭 设备 系统: Arch Linux 设备:</description>
+    </item>
+    
+    <item>
+      <title>刷机那些事</title>
+      <link>https://edte.github.io/2020/2020-05-14-%E6%90%9E%E6%9C%BA%E9%82%A3%E4%BA%9B%E4%BA%8B/</link>
+      <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-05-14-%E6%90%9E%E6%9C%BA%E9%82%A3%E4%BA%9B%E4%BA%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>安卓与 Linux 互传文件的几种方法</title>
+      <link>https://edte.github.io/2020/2020-04-14-%E5%AE%89%E5%8D%93%E4%B8%8E-linux-%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-04-14-%E5%AE%89%E5%8D%93%E4%B8%8E-linux-%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</guid>
+      <description>电脑传简短的文件或链接至手机 有时候我们需要把电脑上一些文字传到手机上，可以使用 Chrome 扩展 二维码生成器 ，把文字转为二维码，然后手机扫描后可获取，如</description>
+    </item>
+    
+  </channel>
+</rss>
